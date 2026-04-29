@@ -131,8 +131,8 @@ export default function Home() {
               </motion.div>
 
               <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-8">
-                Connecting People, Process,<br />
-                and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
+                Connecting People,<br />
+                Process, and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
               </motion.h1>
 
               <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-lg md:text-xl text-foreground/70 max-w-xl mb-12 leading-relaxed">
