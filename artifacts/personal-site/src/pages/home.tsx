@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-import heroTech from "@/assets/hero-tech.png";
+import heroTech from "@/assets/hero-tech2.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -164,10 +164,10 @@ export default function Home() {
               <img
                 src={heroTech}
                 alt="Digital transformation technology"
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
                 style={{
-                  maskImage: "radial-gradient(ellipse 80% 85% at 55% 50%, black 40%, transparent 80%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 55% 50%, black 40%, transparent 80%)",
+                  maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 85%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 85%)",
                 }}
               />
             </motion.div>
