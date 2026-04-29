@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut } from "lucide-react";
 import heroBg from "@/assets/hero-bg.png";
 import aboutOffice from "@/assets/about-office.png";
 import servicesAbstract from "@/assets/services-abstract.png";
@@ -155,6 +155,120 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* HIRE TO RETIRE */}
+      <section id="hire-to-retire" className="py-24 md:py-32 bg-muted/20">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-8 bg-secondary"></div>
+            <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              End-to-End HR Transformation
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-2xl">
+              Transforming every stage of the employee lifecycle.
+            </h2>
+            <p className="text-muted-foreground max-w-md md:text-right">
+              From the moment a candidate applies to the day an employee retires — I help organizations digitize, automate, and optimize every step.
+            </p>
+          </div>
+
+          {/* Timeline connector */}
+          <div className="relative">
+            {/* Horizontal line on desktop */}
+            <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-border z-0" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-6 relative z-10">
+              {[
+                {
+                  icon: <UserPlus className="w-6 h-6" />,
+                  stage: "01",
+                  title: "Recruit & Hire",
+                  desc: "AI-powered talent acquisition, smart job postings, automated screening, and digital offer management."
+                },
+                {
+                  icon: <Users className="w-6 h-6" />,
+                  stage: "02",
+                  title: "Onboard",
+                  desc: "Paperless onboarding workflows, digital induction, and automated provisioning for a seamless day-one experience."
+                },
+                {
+                  icon: <GraduationCap className="w-6 h-6" />,
+                  stage: "03",
+                  title: "Learn & Develop",
+                  desc: "Integrated LMS platforms, personalized AI learning paths, and skills gap analysis tied to career ladders."
+                },
+                {
+                  icon: <Target className="w-6 h-6" />,
+                  stage: "04",
+                  title: "Perform",
+                  desc: "Continuous performance management, OKR tracking, real-time feedback loops, and automated review cycles."
+                },
+                {
+                  icon: <BadgeDollarSign className="w-6 h-6" />,
+                  stage: "05",
+                  title: "Reward & Pay",
+                  desc: "Intelligent payroll automation, total compensation modeling, and benefits administration that employees actually use."
+                },
+                {
+                  icon: <HeartHandshake className="w-6 h-6" />,
+                  stage: "06",
+                  title: "Retain & Engage",
+                  desc: "Predictive attrition models, pulse survey analytics, and engagement programs that move the needle on retention."
+                },
+                {
+                  icon: <LogOut className="w-6 h-6" />,
+                  stage: "07",
+                  title: "Retire & Offboard",
+                  desc: "Structured exit processes, knowledge transfer workflows, succession planning, and alumni relationship management."
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.7 }}
+                  className="flex flex-col"
+                >
+                  {/* Circle node on timeline */}
+                  <div className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 border-secondary text-secondary mb-6 shadow-sm">
+                    {item.icon}
+                  </div>
+                  <span className="font-mono text-xs text-muted-foreground mb-1">{item.stage}</span>
+                  <h3 className="font-bold text-base text-foreground mb-3">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom callout */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-20 border border-secondary/30 bg-secondary/5 p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-2">Ready to transform your HR lifecycle?</h3>
+              <p className="text-muted-foreground max-w-xl">
+                Whether you need to modernize one stage or overhaul the entire employee journey, I bring the technical depth and HR domain expertise to make it happen.
+              </p>
+            </div>
+            <Button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              variant="secondary"
+              size="lg"
+              className="rounded-none font-semibold px-8 h-14 shrink-0"
+            >
+              Start the Conversation <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 

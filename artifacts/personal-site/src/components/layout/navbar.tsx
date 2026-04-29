@@ -42,6 +42,7 @@ export function Navbar() {
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <button onClick={() => scrollToSection("expertise")} className="text-foreground/70 hover:text-foreground transition-colors">Expertise</button>
+          <button onClick={() => scrollToSection("hire-to-retire")} className="text-foreground/70 hover:text-foreground transition-colors">HR Lifecycle</button>
           <button onClick={() => scrollToSection("approach")} className="text-foreground/70 hover:text-foreground transition-colors">Approach</button>
           <button onClick={() => scrollToSection("about")} className="text-foreground/70 hover:text-foreground transition-colors">About</button>
           <Button onClick={() => scrollToSection("contact")} variant="secondary" className="font-semibold px-6 rounded-none">
