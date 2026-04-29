@@ -164,66 +164,65 @@ export default function Home() {
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-8 bg-secondary"></div>
             <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
-              End-to-End HR Transformation
+              Hire to Retire — End-to-End HR Transformation
             </span>
           </div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-8">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-2xl">
               Transforming every stage of the employee lifecycle.
             </h2>
             <p className="text-muted-foreground max-w-md md:text-right">
-              From the moment a candidate applies to the day an employee retires — I help organizations digitize, automate, and optimize every step.
+              The HR lifecycle covers all HR activities from business strategy through an employee's exit. I help organizations digitize, automate, and optimize every stage — turning HR from an administrative function into a strategic business driver.
             </p>
           </div>
+          <p className="text-sm text-muted-foreground mb-16 font-mono">Informed by the AIHR HR Life Cycle Framework — aihr.com</p>
 
           {/* Timeline connector */}
           <div className="relative">
-            {/* Horizontal line on desktop */}
             <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-border z-0" />
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-6 relative z-10">
               {[
                 {
                   icon: <UserPlus className="w-6 h-6" />,
                   stage: "01",
-                  title: "Recruit & Hire",
-                  desc: "AI-powered talent acquisition, smart job postings, automated screening, and digital offer management."
+                  title: "Attract & Brand",
+                  desc: "Build a compelling employer brand that drives talent attraction. Digitize your recruitment funnel with ATS and AI sourcing to track candidates from application through offer — keeping the process short, simple, and consistent."
                 },
                 {
                   icon: <Users className="w-6 h-6" />,
                   stage: "02",
-                  title: "Onboard",
-                  desc: "Paperless onboarding workflows, digital induction, and automated provisioning for a seamless day-one experience."
+                  title: "Recruit & Select",
+                  desc: "Deploy AI-powered screening, structured assessments, and digital offer management. Reduce time-to-hire and improve Candidate NPS by giving every applicant a fast, respectful experience."
                 },
                 {
                   icon: <GraduationCap className="w-6 h-6" />,
                   stage: "03",
+                  title: "Onboard & Induct",
+                  desc: "Start preboarding the moment a candidate signs. Paperless workflows, digital induction, self-service portals, and automated provisioning ensure new hires are productive and engaged from day one."
+                },
+                {
+                  icon: <Activity className="w-6 h-6" />,
+                  stage: "04",
                   title: "Learn & Develop",
-                  desc: "Integrated LMS platforms, personalized AI learning paths, and skills gap analysis tied to career ladders."
+                  desc: "Integrate LMS platforms with AI-powered learning paths, competency frameworks, and skills gap analysis tied directly to career ladders — building leadership pipelines and continuous upskilling at scale."
                 },
                 {
                   icon: <Target className="w-6 h-6" />,
-                  stage: "04",
-                  title: "Perform",
-                  desc: "Continuous performance management, OKR tracking, real-time feedback loops, and automated review cycles."
-                },
-                {
-                  icon: <BadgeDollarSign className="w-6 h-6" />,
                   stage: "05",
-                  title: "Reward & Pay",
-                  desc: "Intelligent payroll automation, total compensation modeling, and benefits administration that employees actually use."
+                  title: "Perform & Reward",
+                  desc: "Move beyond annual reviews to continuous performance management: OKR tracking, real-time feedback loops, intelligent payroll automation, and total compensation modeling employees actually value."
                 },
                 {
                   icon: <HeartHandshake className="w-6 h-6" />,
                   stage: "06",
-                  title: "Retain & Engage",
-                  desc: "Predictive attrition models, pulse survey analytics, and engagement programs that move the needle on retention."
+                  title: "Retain & Succeed",
+                  desc: "Retention is the longest and most costly stage of the lifecycle. Predictive attrition models, pulse survey analytics, and digital succession planning keep your best people engaged and your critical roles covered."
                 },
                 {
                   icon: <LogOut className="w-6 h-6" />,
                   stage: "07",
-                  title: "Retire & Offboard",
-                  desc: "Structured exit processes, knowledge transfer workflows, succession planning, and alumni relationship management."
+                  title: "Offboard & Alumni",
+                  desc: "Structured digital exit processes, exit interview analytics, knowledge transfer workflows, and alumni relationship management — turning departures into organizational intelligence."
                 }
               ].map((item, i) => (
                 <motion.div
@@ -234,7 +233,6 @@ export default function Home() {
                   transition={{ delay: i * 0.08, duration: 0.7 }}
                   className="flex flex-col"
                 >
-                  {/* Circle node on timeline */}
                   <div className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 border-secondary text-secondary mb-6 shadow-sm">
                     {item.icon}
                   </div>
@@ -246,18 +244,48 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Key Metrics */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-20 mb-12"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-px w-8 bg-secondary"></div>
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                Key Metrics I Help You Move
+              </span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {[
+                { metric: "Time to Hire", desc: "Days from application to accepted offer" },
+                { metric: "Candidate NPS", desc: "Applicant satisfaction with their experience" },
+                { metric: "First-Year Attrition", desc: "Early turnover indicating talent-fit gaps" },
+                { metric: "Self-Service Rate", desc: "HR transactions completed without admin touch" },
+                { metric: "HR Cost / Employee", desc: "Total HR spend ÷ headcount — the efficiency signal" }
+              ].map((m, i) => (
+                <div key={i} className="bg-background border border-border p-6">
+                  <h4 className="font-bold text-sm text-foreground mb-2">{m.metric}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* Bottom callout */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mt-20 border border-secondary/30 bg-secondary/5 p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
+            className="border border-secondary/30 bg-secondary/5 p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8"
           >
             <div>
               <h3 className="text-2xl font-bold text-foreground mb-2">Ready to transform your HR lifecycle?</h3>
               <p className="text-muted-foreground max-w-xl">
-                Whether you need to modernize one stage or overhaul the entire employee journey, I bring the technical depth and HR domain expertise to make it happen.
+                Whether you need to modernize one stage or overhaul the entire employee journey, I bring 20+ years of technical depth and HR domain expertise to make it happen — with measurable results.
               </p>
             </div>
             <Button
