@@ -72,6 +72,24 @@ uri = "file://artifacts/personal-site/src/assets/hero-option-6.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "DduF7hewOSE1F9xoT2WvX"
+uri = "file://artifacts/personal-site/src/assets/hero-option-7.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "P8upSLRIsiqZ5SJFj-5os"
+uri = "file://artifacts/personal-site/src/assets/hero-option-8.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "pCqICmvIox3oPGPZRZQlN"
+uri = "file://artifacts/personal-site/src/assets/hero-option-9.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "gPJBT25bfxk_8JWyJeKX9"
 uri = "file://artifacts/personal-site/src/assets/hero-option-1.png"
@@ -107,3 +125,21 @@ id = "iWOo8v019rVwjleVCfQw-"
 uri = "file://artifacts/personal-site/src/assets/hero-option-6.png"
 type = "image"
 title = "Option 6 — AI Neural Globe"
+
+[[outputs]]
+id = "arw8ObSPvjO-fnAS5pjIy"
+uri = "file://artifacts/personal-site/src/assets/hero-option-7.png"
+type = "image"
+title = "Option 7 — Golden Gears + Neural Pathways"
+
+[[outputs]]
+id = "TUb921NC4lXCnGslcHLqK"
+uri = "file://artifacts/personal-site/src/assets/hero-option-8.png"
+type = "image"
+title = "Option 8 — HR People Network Lifecycle Ring"
+
+[[outputs]]
+id = "AsqZ5-qu521wyOMNl5fEp"
+uri = "file://artifacts/personal-site/src/assets/hero-option-9.png"
+type = "image"
+title = "Option 9 — Holographic Enterprise Platforms"
