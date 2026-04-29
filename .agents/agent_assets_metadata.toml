@@ -143,3 +143,9 @@ id = "AsqZ5-qu521wyOMNl5fEp"
 uri = "file://artifacts/personal-site/src/assets/hero-option-9.png"
 type = "image"
 title = "Option 9 — Holographic Enterprise Platforms"
+
+[[outputs]]
+id = "DdKCmouPqUl7LhiGhb9Og"
+uri = "file://artifacts/personal-site/src/assets/hero-tech2.png"
+type = "image"
+title = "Option 9 — Transparent background"
