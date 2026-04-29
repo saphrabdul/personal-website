@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { LineChart, ArrowRight, ArrowUpRight } from "lucide-react";
+import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import aboutOffice from "@/assets/about-office.png";
 
 const timeline = [
@@ -115,40 +116,175 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CONTACT / CTA */}
-      <section id="contact" className="py-32 bg-secondary text-foreground text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-              Ready to modernize your HR infrastructure?
-            </h2>
-            <p className="text-xl text-foreground/80 mb-12 font-medium">
-              Schedule a discovery call to discuss your organization's digital transformation roadmap.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="mailto:saphr.abdul@gmail.com?subject=Consultation%20Request%20—%20HR%20Digital%20Transformation&body=Hi%20Abdul%2C%0A%0AI%27d%20like%20to%20schedule%20a%20discovery%20call%20to%20discuss%20our%20HR%20transformation%20roadmap.%0A%0AOrganization%3A%20%0AKey%20challenge%3A%20%0APreferred%20time%3A%20%0A%0AThank%20you">
-                <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
-                  Book a Consultation
-                </Button>
-              </a>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => window.location.href = "mailto:saphr.abdul@gmail.com"}
-                className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all"
-              >
-                saphr.abdul@gmail.com <ArrowUpRight className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
-          </motion.div>
+      {/* CONTACT FORM */}
+      <section id="contact" className="py-24 md:py-32 bg-foreground text-background">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Left — headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary" />
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">Get in Touch</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+                Ready to modernize your HR infrastructure?
+              </h2>
+              <p className="text-background/60 text-lg leading-relaxed mb-8">
+                Whether you need to fix one stage or redesign the entire employee journey — send a message and I'll get back to you personally.
+              </p>
+              <ul className="space-y-3 text-background/70 text-sm">
+                {[
+                  "No obligation discovery call",
+                  "Response within 24 hours",
+                  "20+ years of HR transformation expertise",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Right — form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+            >
+              <ContactForm />
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>
+  );
+}
+
+function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json() as { ok?: boolean; error?: string };
+      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      setStatus("success");
+      setForm({ name: "", email: "", company: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className="border border-secondary/30 bg-secondary/10 p-10 flex flex-col items-center text-center gap-4">
+        <CheckCircle2 className="w-12 h-12 text-secondary" />
+        <h3 className="text-xl font-bold text-background">Message sent!</h3>
+        <p className="text-background/60">Thank you for reaching out. I'll be in touch within 24 hours.</p>
+        <button
+          onClick={() => setStatus("idle")}
+          className="text-sm text-secondary underline underline-offset-2 mt-2"
+        >
+          Send another message
+        </button>
+      </div>
+    );
+  }
+
+  const inputCls = "w-full bg-background/5 border border-background/20 text-background placeholder:text-background/30 px-4 py-3 focus:outline-none focus:border-secondary transition-colors";
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Name *</label>
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Your name"
+            required
+            className={inputCls}
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Email *</label>
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="your@email.com"
+            required
+            className={inputCls}
+          />
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Company</label>
+        <input
+          name="company"
+          value={form.company}
+          onChange={handleChange}
+          placeholder="Organization name (optional)"
+          className={inputCls}
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Message *</label>
+        <textarea
+          name="message"
+          value={form.message}
+          onChange={handleChange}
+          placeholder="Tell me about your HR transformation challenge..."
+          required
+          rows={5}
+          className={`${inputCls} resize-none`}
+        />
+      </div>
+
+      {status === "error" && (
+        <div className="flex items-center gap-2 text-sm text-red-400 bg-red-400/10 border border-red-400/20 px-4 py-3">
+          <AlertCircle className="w-4 h-4 shrink-0" />
+          {errorMsg}
+        </div>
+      )}
+
+      <Button
+        type="submit"
+        disabled={status === "loading"}
+        size="lg"
+        className="w-full rounded-none h-14 font-semibold text-base disabled:opacity-60"
+      >
+        {status === "loading" ? (
+          <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
+        ) : (
+          <>Send Message <ArrowRight className="ml-2 w-5 h-5" /></>
+        )}
+      </Button>
+
+      <p className="text-xs text-background/30 text-center">Your information is kept strictly private.</p>
+    </form>
   );
 }

@@ -130,11 +130,11 @@ export default function ExpertisePage() {
             <h2 className="text-3xl font-bold text-background mb-2">Ready to discuss your transformation?</h2>
             <p className="text-background/50 font-mono text-sm">Tell me where you are — I'll tell you how to move forward.</p>
           </div>
-          <a href="mailto:saphr.abdul@gmail.com?subject=Expertise%20Enquiry">
+          <Link href="/about#contact">
             <Button size="lg" className="rounded-none h-14 px-8 font-semibold shrink-0">
               Get in Touch <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

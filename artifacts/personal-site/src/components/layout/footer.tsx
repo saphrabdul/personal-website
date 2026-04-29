@@ -26,12 +26,6 @@ export function Footer() {
               >
                 in
               </a>
-              <a
-                href="mailto:saphr.abdul@gmail.com"
-                className="w-10 h-10 border border-background/20 rounded flex items-center justify-center hover:bg-secondary hover:text-foreground hover:border-secondary transition-all text-xs font-bold"
-              >
-                @
-              </a>
             </div>
           </div>
 
@@ -49,13 +43,13 @@ export function Footer() {
             <h4 className="font-mono text-sm uppercase tracking-wider text-secondary mb-6">Connect</h4>
             <ul className="space-y-4 text-background/70">
               <li>
-                <a href="mailto:saphr.abdul@gmail.com" className="hover:text-secondary transition-colors">
-                  saphr.abdul@gmail.com
-                </a>
+                <Link href="/about#contact" className="hover:text-secondary transition-colors">
+                  Book a Consultation
+                </Link>
               </li>
               <li>
                 <Link href="/about#contact" className="hover:text-secondary transition-colors">
-                  Book a Consultation
+                  Send a Message
                 </Link>
               </li>
             </ul>

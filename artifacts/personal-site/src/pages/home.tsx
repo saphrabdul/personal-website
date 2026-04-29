@@ -381,11 +381,11 @@ export default function Home() {
               Schedule a discovery call to discuss your organization's digital transformation roadmap.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="mailto:saphr.abdul@gmail.com?subject=Consultation%20Request%20—%20HR%20Digital%20Transformation&body=Hi%20Abdul%2C%0A%0AI%27d%20like%20to%20schedule%20a%20discovery%20call%20to%20discuss%20our%20HR%20transformation%20roadmap.%0A%0AOrganization%3A%20%0AKey%20challenge%3A%20%0APreferred%20time%3A%20%0A%0AThank%20you">
+              <Link href="/about#contact">
                 <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
                   Book a Consultation
                 </Button>
-              </a>
+              </Link>
               <Link href="/about">
                 <Button size="lg" variant="outline" className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
                   Learn About Abdul <ArrowRight className="ml-2 w-5 h-5" />

@@ -446,11 +446,11 @@ export default function LifecycleStagePage() {
             <p className="text-background/50 mb-10 max-w-xl mx-auto">
               Tell me where you are and I will tell you exactly what to do about it — and how long it will take.
             </p>
-            <a href="mailto:saphr.abdul@gmail.com">
+            <Link href="/about#contact">
               <Button size="lg" className="rounded-none h-14 px-10 font-semibold text-base">
                 Start the conversation <ArrowUpRight className="ml-2 w-5 h-5" />
               </Button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

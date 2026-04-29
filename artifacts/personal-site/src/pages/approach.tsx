@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import servicesAbstract from "@/assets/services-abstract.png";
 
 const steps = [
@@ -185,11 +186,11 @@ export default function ApproachPage() {
             <h2 className="text-3xl font-bold text-background mb-2">Want to see this applied to your organization?</h2>
             <p className="text-background/50 font-mono text-sm">Let's start with a no-obligation discovery call.</p>
           </div>
-          <a href="mailto:saphr.abdul@gmail.com?subject=Approach%20Discussion">
+          <Link href="/about#contact">
             <Button size="lg" className="rounded-none h-14 px-8 font-semibold shrink-0">
               Book a Call <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

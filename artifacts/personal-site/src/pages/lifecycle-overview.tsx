@@ -76,11 +76,11 @@ export default function LifecycleOverviewPage() {
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 Whether you need to fix one broken stage or redesign the entire journey — the impact comes from connecting them all.
               </p>
-              <a href="mailto:saphr.abdul@gmail.com?subject=HR%20Lifecycle%20Transformation%20Enquiry">
+              <Link href="/about#contact">
                 <Button variant="secondary" size="sm" className="rounded-none font-semibold w-full">
                   Start the Conversation <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -136,11 +136,11 @@ export default function LifecycleOverviewPage() {
               Whether you need to fix one broken stage or rebuild the entire employee journey.
             </p>
           </div>
-          <a href="mailto:saphr.abdul@gmail.com?subject=HR%20Lifecycle%20Enquiry">
+          <Link href="/about#contact">
             <Button size="lg" className="rounded-none h-14 px-8 font-semibold shrink-0">
               Start the Conversation <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-          </a>
+          </Link>
         </div>
       </section>
     </div>
