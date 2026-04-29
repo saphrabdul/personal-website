@@ -71,8 +71,9 @@ const HeroOrbit = () => (
       animate={{ rotate: 360 }}
       transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
     >
-      {/* Dashed connection lines from center to each card */}
-      <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+      {/* Connection lines */}
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" style={{ zIndex: 0 }}>
+        {/* Center-to-card spoke lines */}
         {ORBIT_ITEMS.map((_, i) => {
           const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
           const rad = (angle * Math.PI) / 180;
@@ -80,10 +81,23 @@ const HeroOrbit = () => (
           const x = 50 + r * Math.cos(rad);
           const y = 50 + r * Math.sin(rad);
           return (
-            <line key={i} x1="50%" y1="50%" x2={`${x}%`} y2={`${y}%`}
-              stroke="rgba(0,0,0,0.09)" strokeWidth="1" strokeDasharray="3 5" />
+            <line key={`spoke-${i}`} x1="50" y1="50" x2={x} y2={y}
+              stroke="rgba(0,0,0,0.08)" strokeWidth="0.4" strokeDasharray="1.5 2.5" />
           );
         })}
+        {/* Polygon connecting all cards */}
+        <polygon
+          points={ORBIT_ITEMS.map((_, i) => {
+            const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
+            const rad = (angle * Math.PI) / 180;
+            const r = 42;
+            return `${50 + r * Math.cos(rad)},${50 + r * Math.sin(rad)}`;
+          }).join(" ")}
+          fill="none"
+          stroke="rgba(0,0,0,0.07)"
+          strokeWidth="0.35"
+          strokeDasharray="2 4"
+        />
       </svg>
 
       {/* Cards */}
