@@ -125,8 +125,8 @@ export default function Home() {
                 src={heroTech}
                 alt="Digital transformation technology"
                 className="w-full max-h-[480px] object-contain"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                animate={{ x: [-12, 12, -12] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 style={{
                   maskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
                   WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
