@@ -11,6 +11,7 @@ import {
   Tooltip as RechartsTooltip,
 } from "recharts";
 import heroBg from "@/assets/hero-bg.png";
+import robotImg from "@/assets/robot.png";
 import aboutOffice from "@/assets/about-office.png";
 import servicesAbstract from "@/assets/services-abstract.png";
 
@@ -199,46 +200,63 @@ export default function Home() {
         </div>
         
         <div className="container relative z-10 mx-auto px-6 md:px-12">
-          <motion.div 
-            initial="hidden"
-            animate="show"
-            variants={STAGGER_CONTAINER}
-            className="max-w-4xl"
-          >
-            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
-              <div className="h-px w-8 bg-secondary"></div>
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
-                Digital Transformation Advisor
-              </span>
-            </motion.div>
-            
-            <motion.h1 
-              variants={FADE_UP_ANIMATION_VARIANTS}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-[1.1] mb-8"
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial="hidden"
+              animate="show"
+              variants={STAGGER_CONTAINER}
             >
-              Building the <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">
-                intelligent core
-              </span><br/>
-              of modern HR.
-            </motion.h1>
-            
-            <motion.p 
-              variants={FADE_UP_ANIMATION_VARIANTS}
-              className="text-lg md:text-xl text-foreground/70 max-w-2xl mb-12 leading-relaxed"
-            >
-              I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
-            </motion.p>
-            
-            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4">
-              <Button onClick={scrollToContact} size="lg" className="rounded-none font-semibold text-base h-14 px-8">
-                Discuss Your Transformation <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="rounded-none font-semibold text-base h-14 px-8 border-foreground/20 bg-background/50 backdrop-blur-sm">
-                View Methodology
-              </Button>
+              <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
+                <div className="h-px w-8 bg-secondary"></div>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
+                  Digital Transformation Advisor
+                </span>
+              </motion.div>
+              
+              <motion.h1 
+                variants={FADE_UP_ANIMATION_VARIANTS}
+                className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-8"
+              >
+                Building the <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">
+                  intelligent core
+                </span><br/>
+                of modern HR.
+              </motion.h1>
+              
+              <motion.p 
+                variants={FADE_UP_ANIMATION_VARIANTS}
+                className="text-lg md:text-xl text-foreground/70 max-w-xl mb-12 leading-relaxed"
+              >
+                I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
+              </motion.p>
+              
+              <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4">
+                <Button onClick={scrollToContact} size="lg" className="rounded-none font-semibold text-base h-14 px-8">
+                  Discuss Your Transformation <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button variant="outline" size="lg" className="rounded-none font-semibold text-base h-14 px-8 border-foreground/20 bg-background/50 backdrop-blur-sm">
+                  View Methodology
+                </Button>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Robot image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+              className="hidden lg:flex items-end justify-center relative"
+            >
+              <div className="absolute inset-0 rounded-full blur-3xl opacity-20 bg-secondary scale-75 translate-y-10"></div>
+              <img
+                src={robotImg}
+                alt="AI-powered HR technology"
+                className="relative z-10 w-full max-w-sm xl:max-w-md object-contain drop-shadow-2xl"
+                style={{ filter: "drop-shadow(0 0 40px hsl(var(--secondary) / 0.25))" }}
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

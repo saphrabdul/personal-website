@@ -18,3 +18,9 @@ id = "XA4l1V2V-VNWo0BFEFENO"
 uri = "file://artifacts/personal-site/src/assets/services-abstract.png"
 type = "image"
 title = "Data structure abstract"
+
+[[generated]]
+id = "QOhqZ9nzSTSQEDpkuK4X4"
+uri = "file://artifacts/personal-site/src/assets/robot.png"
+type = "image"
+title = "sleek-hr-robot"
