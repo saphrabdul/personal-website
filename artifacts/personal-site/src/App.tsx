@@ -40,7 +40,7 @@ function ScrollToTop() {
 
 function Router() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-foreground">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

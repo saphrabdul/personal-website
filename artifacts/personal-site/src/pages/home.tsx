@@ -251,8 +251,8 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-32 bg-secondary text-foreground text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+      <section className="py-32 bg-foreground text-background text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -263,17 +263,17 @@ export default function Home() {
             <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
               Ready to modernize your HR infrastructure?
             </h2>
-            <p className="text-xl text-foreground/80 mb-12 font-medium">
+            <p className="text-xl text-background/70 mb-12 font-medium">
               Schedule a discovery call to discuss your organization's digital transformation roadmap.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/about#contact">
-                <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
+                <Button size="lg" className="rounded-none h-16 px-10 text-lg bg-secondary text-foreground hover:bg-secondary/90 shadow-xl hover:shadow-2xl transition-all">
                   Book a Consultation
                 </Button>
               </Link>
               <Link href="/about">
-                <Button size="lg" variant="outline" className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
+                <Button size="lg" variant="outline" className="rounded-none h-16 px-10 text-lg border-background/30 text-background hover:bg-background hover:text-foreground bg-transparent transition-all">
                   Learn About Abdul <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
