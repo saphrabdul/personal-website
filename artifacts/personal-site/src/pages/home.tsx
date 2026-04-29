@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-import heroBg from "@/assets/hero-bg.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -123,11 +122,6 @@ export default function Home() {
     <div className="w-full">
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-background">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-background/80 md:bg-background/60 z-10" />
-          <img src={heroBg} alt="Abstract background" className="w-full h-full object-cover object-center opacity-60" />
-        </div>
-
         <div className="container relative z-10 mx-auto px-6 md:px-12">
           <div className="grid gap-12 items-center max-w-4xl">
             <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
