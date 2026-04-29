@@ -52,7 +52,7 @@ const CircularRing = ({ label, percentage, delay }: { label: string; percentage:
     <div ref={ref} className="flex flex-col items-center gap-3">
       <div className="relative w-24 h-24 md:w-28 md:h-28">
         <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-          <circle cx="50" cy="50" r={radius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="7" />
+          <circle cx="50" cy="50" r={radius} fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="7" />
           <motion.circle
             cx="50" cy="50" r={radius}
             fill="none"
@@ -77,7 +77,7 @@ const CircularRing = ({ label, percentage, delay }: { label: string; percentage:
           </motion.span>
         </div>
       </div>
-      <span className="text-xs text-center font-mono uppercase tracking-wider text-white/50 max-w-[90px] leading-tight">{label}</span>
+      <span className="text-xs text-center font-mono uppercase tracking-wider text-muted-foreground max-w-[90px] leading-tight">{label}</span>
     </div>
   );
 };
@@ -170,7 +170,7 @@ export default function Home() {
       </section>
 
       {/* HR TRANSFORMATION IMPACT SECTION */}
-      <section className="py-24 md:py-32 bg-foreground text-background border-b border-background/10">
+      <section className="py-24 md:py-32 bg-background text-foreground border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
@@ -178,7 +178,7 @@ export default function Home() {
               <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">The Data</span>
             </div>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-background max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-2xl">
                 Where Digital Transformation Delivers Real Results
               </h2>
             </div>
@@ -190,11 +190,11 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="border border-background/10 p-8 md:p-10 bg-background/5"
+            className="border border-border p-8 md:p-10 bg-muted/20"
           >
             <div className="mb-10">
-              <h3 className="text-lg font-bold text-background tracking-tight">HR Process Automation Potential</h3>
-              <p className="text-background/40 text-sm mt-1 font-mono">Digitization impact by function — based on 50+ global transformation projects</p>
+              <h3 className="text-lg font-bold text-foreground tracking-tight">HR Process Automation Potential</h3>
+              <p className="text-muted-foreground text-sm mt-1 font-mono">Digitization impact by function — based on 50+ global transformation projects</p>
             </div>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-6 place-items-center">
               <CircularRing label="Payroll & Benefits" percentage={87} delay={0.1} />
@@ -212,7 +212,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-8 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-background/10 border border-background/10"
+            className="mt-8 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border border border-border"
           >
             {[
               { value: "↓ 40%", label: "Average reduction in time-to-hire after ATS + AI implementation" },
@@ -221,7 +221,7 @@ export default function Home() {
             ].map((item, i) => (
               <div key={i} className="p-8 flex flex-col gap-2">
                 <span className="text-4xl font-bold text-secondary">{item.value}</span>
-                <span className="text-background/50 text-sm leading-relaxed font-mono">{item.label}</span>
+                <span className="text-muted-foreground text-sm leading-relaxed font-mono">{item.label}</span>
               </div>
             ))}
           </motion.div>
