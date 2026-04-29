@@ -3,16 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut, ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip as RechartsTooltip,
+  RadarChart,
+  Radar,
+  PolarGrid,
+  PolarAngleAxis,
   ResponsiveContainer,
-  ReferenceLine,
-  BarChart,
-  Bar,
+  Tooltip as RechartsTooltip,
 } from "recharts";
 import heroBg from "@/assets/hero-bg.png";
 import aboutOffice from "@/assets/about-office.png";
@@ -121,6 +117,47 @@ const ExpertiseCard = ({ icon, title, desc, bullets, delay }: any) => {
   );
 };
 
+const CircularRing = ({ label, percentage, delay }: { label: string; percentage: number; delay: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const radius = 38;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-3" data-testid={`ring-${label.replace(/\s+/g, '-').toLowerCase()}`}>
+      <div className="relative w-24 h-24 md:w-28 md:h-28">
+        <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+          <circle cx="50" cy="50" r={radius} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="7" />
+          <motion.circle
+            cx="50" cy="50" r={radius}
+            fill="none"
+            stroke="hsl(var(--secondary))"
+            strokeWidth="7"
+            strokeLinecap="butt"
+            strokeDasharray={circumference}
+            initial={{ strokeDashoffset: circumference }}
+            animate={isInView ? { strokeDashoffset: offset } : { strokeDashoffset: circumference }}
+            transition={{ duration: 1.8, delay, ease: "easeOut" }}
+            style={{ filter: "drop-shadow(0 0 6px hsl(var(--secondary) / 0.6))" }}
+          />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.span
+            className="font-bold text-base md:text-lg text-secondary"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: delay + 0.3, duration: 0.4 }}
+          >
+            {percentage}%
+          </motion.span>
+        </div>
+      </div>
+      <span className="text-xs text-center font-mono uppercase tracking-wider text-white/50 max-w-[90px] leading-tight">{label}</span>
+    </div>
+  );
+};
+
 const SkillBar = ({ skill, targetPercentage, delay }: { skill: string, targetPercentage: number, delay: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -147,24 +184,6 @@ export default function Home() {
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
-
-  const maturityData = [
-    { name: 'Business as Usual', score: 10 },
-    { name: 'Present & Active', score: 25 },
-    { name: 'Formalized', score: 40 },
-    { name: 'Strategic', score: 65 },
-    { name: 'Converged', score: 85 },
-    { name: 'Innovative', score: 100 },
-  ];
-
-  const automationData = [
-    { process: 'Payroll & Benefits', potential: 87 },
-    { process: 'Recruitment Screening', potential: 82 },
-    { process: 'Employee Onboarding', potential: 76 },
-    { process: 'Performance Reporting', potential: 71 },
-    { process: 'L&D Administration', potential: 68 },
-    { process: 'HR Analytics', potential: 64 },
-  ];
 
   return (
     <div className="w-full">
@@ -236,113 +255,121 @@ export default function Home() {
       </section>
 
       {/* HR TRANSFORMATION IMPACT SECTION */}
-      <section className="py-24 md:py-32 bg-background border-b border-border">
+      <section className="py-24 md:py-32 bg-foreground text-background border-b border-background/10">
         <div className="container mx-auto px-6 md:px-12">
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-secondary"></div>
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">
                 The Data
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl mb-4">
-              Where Digital Transformation Delivers Real Results
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Based on 20+ years of global HR transformation engagements.
-            </p>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-background max-w-2xl">
+                Where Digital Transformation Delivers Real Results
+              </h2>
+              <p className="text-background/50 max-w-sm md:text-right text-sm font-mono">
+                Based on 20+ years of global HR transformation engagements across 50+ projects.
+              </p>
+            </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Chart A: Area Chart */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+            {/* LEFT: Radar Chart — HR Competency Map */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-muted/20 border border-border p-6 md:p-8"
+              transition={{ duration: 0.9 }}
+              className="border border-background/10 p-8 bg-background/5"
             >
-              <h3 className="text-xl font-bold text-foreground mb-6">Digital HR Maturity Journey</h3>
-              <div className="h-[300px] w-full">
+              <div className="mb-6">
+                <h3 className="text-lg font-bold text-background tracking-tight">Domain Expertise Map</h3>
+                <p className="text-background/40 text-sm mt-1 font-mono">Competency score across HR disciplines</p>
+              </div>
+              <div className="h-[320px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={maturityData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
+                  <RadarChart data={[
+                    { domain: 'Talent Acquisition', score: 95 },
+                    { domain: 'HR Systems', score: 92 },
+                    { domain: 'AI & Analytics', score: 90 },
+                    { domain: 'Change Mgmt', score: 88 },
+                    { domain: 'L&D Design', score: 85 },
+                    { domain: 'Performance', score: 87 },
+                  ]}>
                     <defs>
-                      <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="hsl(var(--secondary))" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="hsl(var(--secondary))" stopOpacity={0}/>
-                      </linearGradient>
+                      <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="hsl(var(--secondary))" stopOpacity={0.4} />
+                        <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity={0.05} />
+                      </radialGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                    <XAxis 
-                      dataKey="name" 
-                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={{ stroke: 'hsl(var(--border))' }}
-                      angle={-45}
-                      textAnchor="end"
-                      height={60}
+                    <PolarGrid
+                      stroke="rgba(255,255,255,0.08)"
+                      gridType="polygon"
                     />
-                    <YAxis 
-                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={false}
+                    <PolarAngleAxis
+                      dataKey="domain"
+                      tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 11, fontFamily: 'monospace' }}
                     />
-                    <RechartsTooltip 
-                      contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))', borderRadius: '4px' }}
-                      itemStyle={{ color: 'hsl(var(--secondary))', fontWeight: 'bold' }}
+                    <RechartsTooltip
+                      contentStyle={{ backgroundColor: '#0a0f1e', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '2px', fontSize: 12 }}
+                      formatter={(value) => [`${value}`, 'Score']}
                     />
-                    <ReferenceLine y={35} stroke="hsl(var(--muted-foreground))" strokeDasharray="3 3" label={{ position: 'top', value: 'Industry Average', fill: 'hsl(var(--muted-foreground))', fontSize: 12 }} />
-                    <Area 
-                      type="monotone" 
-                      dataKey="score" 
-                      stroke="hsl(var(--secondary))" 
-                      fillOpacity={1} 
-                      fill="url(#colorScore)" 
+                    <Radar
+                      dataKey="score"
+                      stroke="hsl(var(--secondary))"
                       strokeWidth={2}
+                      fill="url(#radarFill)"
+                      dot={{ fill: 'hsl(var(--secondary))', r: 3, strokeWidth: 0 }}
                     />
-                  </AreaChart>
+                  </RadarChart>
                 </ResponsiveContainer>
               </div>
             </motion.div>
 
-            {/* Chart B: Bar Chart */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            {/* RIGHT: Circular Ring Gauges — Automation Potential */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-muted/20 border border-border p-6 md:p-8"
+              transition={{ duration: 0.9 }}
+              className="border border-background/10 p-8 bg-background/5"
             >
-              <h3 className="text-xl font-bold text-foreground mb-6">HR Process Automation Potential</h3>
-              <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={automationData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--border))" />
-                    <XAxis 
-                      type="number" 
-                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={{ stroke: 'hsl(var(--border))' }}
-                    />
-                    <YAxis 
-                      dataKey="process" 
-                      type="category" 
-                      tick={{ fill: 'hsl(var(--foreground))', fontSize: 12 }}
-                      tickLine={false}
-                      axisLine={false}
-                      width={140}
-                    />
-                    <RechartsTooltip 
-                      cursor={{ fill: 'hsl(var(--muted)/0.5)' }}
-                      contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))', borderRadius: '4px' }}
-                      formatter={(value) => [`${value}%`, 'Potential']}
-                    />
-                    <Bar dataKey="potential" fill="hsl(var(--secondary))" radius={[0, 4, 4, 0]} barSize={24} />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div className="mb-8">
+                <h3 className="text-lg font-bold text-background tracking-tight">HR Process Automation Potential</h3>
+                <p className="text-background/40 text-sm mt-1 font-mono">Digitization impact by function</p>
+              </div>
+              <div className="grid grid-cols-3 gap-6 place-items-center">
+                <CircularRing label="Payroll & Benefits" percentage={87} delay={0.1} />
+                <CircularRing label="Recruitment Screening" percentage={82} delay={0.2} />
+                <CircularRing label="Employee Onboarding" percentage={76} delay={0.3} />
+                <CircularRing label="Performance Reporting" percentage={71} delay={0.4} />
+                <CircularRing label="L&D Administration" percentage={68} delay={0.5} />
+                <CircularRing label="HR Analytics" percentage={64} delay={0.6} />
               </div>
             </motion.div>
           </div>
+
+          {/* Impact Ticker Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-8 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-background/10 border border-background/10"
+          >
+            {[
+              { value: "↓ 40%", label: "Average reduction in time-to-hire after ATS + AI implementation" },
+              { value: "↑ 3×", label: "Increase in HR self-service adoption after digital onboarding overhaul" },
+              { value: "↓ 28%", label: "HR operational cost reduction achieved in enterprise transformation programs" },
+            ].map((item, i) => (
+              <div key={i} className="p-8 flex flex-col gap-2">
+                <span className="text-4xl font-bold text-secondary">{item.value}</span>
+                <span className="text-background/50 text-sm leading-relaxed font-mono">{item.label}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
