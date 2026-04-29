@@ -88,15 +88,15 @@ export default function Home() {
             <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
+                <span className="font-mono text-base font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
               </motion.div>
 
-              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-3xl sm:text-4xl md:text-4xl font-bold tracking-tight text-foreground leading-[1.15] mb-8">
+              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
               </motion.h1>
 
-              <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-lg md:text-xl text-foreground/70 max-w-xl mb-12 leading-relaxed">
+              <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-xl md:text-2xl text-foreground/70 max-w-xl mb-12 leading-relaxed">
                 I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
               </motion.p>
 
