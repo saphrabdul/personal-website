@@ -130,7 +130,7 @@ export default function Home() {
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
               </motion.div>
 
-              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-8">
+              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
               </motion.h1>
