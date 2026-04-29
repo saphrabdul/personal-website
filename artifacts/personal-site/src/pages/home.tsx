@@ -1,7 +1,9 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { lifecycleStages } from "@/data/lifecycle-stages";
 import {
   RadarChart,
   Radar,
@@ -474,66 +476,34 @@ export default function Home() {
           <div className="relative">
             <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-border z-0" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-6 relative z-10">
-              {[
-                {
-                  icon: <UserPlus className="w-6 h-6" />,
-                  stage: "01",
-                  title: "Attract & Brand",
-                  desc: "Your employer brand is your first HR product. I help organizations craft a digital talent attraction strategy — smart job architecture, AI-assisted sourcing, and a candidate experience that makes the right people want to work for you."
-                },
-                {
-                  icon: <Users className="w-6 h-6" />,
-                  stage: "02",
-                  title: "Recruit & Select",
-                  desc: "I redesign selection processes around speed and quality — not volume. Structured assessments, intelligent screening tools, and digital offer workflows that cut time-to-hire without cutting corners on who you bring in."
-                },
-                {
-                  icon: <GraduationCap className="w-6 h-6" />,
-                  stage: "03",
-                  title: "Onboard & Induct",
-                  desc: "The contract signature should be the start of the experience, not the end of the process. I build digital onboarding systems that deliver everything a new hire needs — access, context, and connection — before they walk through the door."
-                },
-                {
-                  icon: <Activity className="w-6 h-6" />,
-                  stage: "04",
-                  title: "Learn & Develop",
-                  desc: "I connect learning systems to actual business outcomes. That means competency-mapped LMS platforms, AI-personalized development paths, and skills frameworks that show employees exactly how to grow — and show the business who is ready to lead."
-                },
-                {
-                  icon: <Target className="w-6 h-6" />,
-                  stage: "05",
-                  title: "Perform & Reward",
-                  desc: "Annual reviews are a symptom of broken systems. I implement continuous performance frameworks with real-time goal tracking, meaningful feedback cycles, and compensation structures that reward the right behaviors — automatically and fairly."
-                },
-                {
-                  icon: <HeartHandshake className="w-6 h-6" />,
-                  stage: "06",
-                  title: "Retain & Engage",
-                  desc: "By the time someone hands in their notice, you have already lost. I use predictive workforce analytics and digital engagement strategies to spot disengagement early, plan succession proactively, and build cultures people choose to stay in."
-                },
-                {
-                  icon: <LogOut className="w-6 h-6" />,
-                  stage: "07",
-                  title: "Offboard & Transition",
-                  desc: "Every exit carries institutional knowledge. I design structured offboarding processes that capture that knowledge, protect the organization, and maintain relationships — so departures become assets, not losses."
-                }
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.7 }}
-                  className="flex flex-col"
-                >
-                  <div className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 border-secondary text-secondary mb-6 shadow-sm">
-                    {item.icon}
-                  </div>
-                  <span className="font-mono text-xs text-muted-foreground mb-1">{item.stage}</span>
-                  <h3 className="font-bold text-base text-foreground mb-3">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
+              {lifecycleStages.map((item, i) => {
+                const StageIcon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.7 }}
+                    className="flex flex-col"
+                  >
+                    <Link href={`/lifecycle/${item.slug}`}>
+                      <div className="flex flex-col group cursor-pointer">
+                        <div className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 border-secondary text-secondary mb-6 shadow-sm group-hover:bg-secondary group-hover:text-background transition-colors relative">
+                          <StageIcon className="w-6 h-6" />
+                          <ExternalLink className="w-3 h-3 absolute top-1.5 right-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <span className="font-mono text-xs text-muted-foreground mb-1">{item.stage}</span>
+                        <h3 className="font-bold text-base text-foreground mb-3 group-hover:text-secondary transition-colors">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.tagline}</p>
+                        <span className="mt-3 text-xs font-mono text-secondary opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                          Explore stage <ArrowRight className="w-3 h-3" />
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
