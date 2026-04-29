@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "KFsR1aQNT4VxIhAo5Gr3a"
+uri = "file://artifacts/personal-site/src/assets/hero-bg.png"
+type = "image"
+title = "Hero background abstract"
+
+[[generated]]
+id = "JejVuwmZsFf2l7Di0g4x-"
+uri = "file://artifacts/personal-site/src/assets/about-office.png"
+type = "image"
+title = "Professional office abstract"
+
+[[generated]]
+id = "XA4l1V2V-VNWo0BFEFENO"
+uri = "file://artifacts/personal-site/src/assets/services-abstract.png"
+type = "image"
+title = "Data structure abstract"

@@ -1,0 +1,298 @@
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2 } from "lucide-react";
+import heroBg from "@/assets/hero-bg.png";
+import aboutOffice from "@/assets/about-office.png";
+import servicesAbstract from "@/assets/services-abstract.png";
+
+const FADE_UP_ANIMATION_VARIANTS = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", duration: 1.5 } },
+};
+
+const STAGGER_CONTAINER = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+export default function Home() {
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <div className="w-full">
+      {/* HERO SECTION */}
+      <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-background">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-background/80 md:bg-background/60 z-10"></div>
+          <img 
+            src={heroBg} 
+            alt="Abstract background" 
+            className="w-full h-full object-cover object-center opacity-60"
+          />
+        </div>
+        
+        <div className="container relative z-10 mx-auto px-6 md:px-12">
+          <motion.div 
+            initial="hidden"
+            animate="show"
+            variants={STAGGER_CONTAINER}
+            className="max-w-4xl"
+          >
+            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
+              <div className="h-px w-8 bg-secondary"></div>
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
+                Digital Transformation Advisor
+              </span>
+            </motion.div>
+            
+            <motion.h1 
+              variants={FADE_UP_ANIMATION_VARIANTS}
+              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground leading-[1.1] mb-8"
+            >
+              Building the <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">
+                intelligent core
+              </span><br/>
+              of modern HR.
+            </motion.h1>
+            
+            <motion.p 
+              variants={FADE_UP_ANIMATION_VARIANTS}
+              className="text-lg md:text-xl text-foreground/70 max-w-2xl mb-12 leading-relaxed"
+            >
+              I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
+            </motion.p>
+            
+            <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4">
+              <Button onClick={scrollToContact} size="lg" className="rounded-none font-semibold text-base h-14 px-8">
+                Discuss Your Transformation <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-none font-semibold text-base h-14 px-8 border-foreground/20 bg-background/50 backdrop-blur-sm">
+                View Methodology
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* VALUE PROP STATS */}
+      <section className="border-y border-border bg-muted/30">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
+            {[
+              { label: "Years Experience", value: "15+" },
+              { label: "Enterprise Deployments", value: "40+" },
+              { label: "Cost Reduction", value: "32%" },
+              { label: "AI Implementations", value: "12" }
+            ].map((stat, i) => (
+              <div key={i} className="py-12 md:py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
+                <span className="text-4xl md:text-5xl font-bold text-foreground mb-2">{stat.value}</span>
+                <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERTISE / SERVICES */}
+      <section id="expertise" className="py-24 md:py-32 bg-background relative">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-8">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary"></div>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                  Core Expertise
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+                Architecting the future of human capital operations.
+              </h2>
+            </div>
+            <p className="text-muted-foreground max-w-md md:text-right">
+              Strategic consulting tailored for enterprise organizations looking to leverage the next generation of HR technology.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <BrainCircuit className="w-8 h-8 text-secondary mb-6" />,
+                title: "AI Integration for HR",
+                desc: "Deploying predictive analytics, conversational AI, and automated screening workflows to optimize recruitment and performance management."
+              },
+              {
+                icon: <Network className="w-8 h-8 text-secondary mb-6" />,
+                title: "Digital Transformation",
+                desc: "End-to-end strategic planning to move legacy HR operations into cloud-native, integrated, and agile ecosystems."
+              },
+              {
+                icon: <Activity className="w-8 h-8 text-secondary mb-6" />,
+                title: "HR Systems Architecture",
+                desc: "Bridging the gap between IT and HR to select, architect, and implement Workday, SAP, or modern composable HR stacks."
+              }
+            ].map((service, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className="bg-muted/40 p-10 border border-border group hover:border-secondary/50 transition-colors"
+              >
+                {service.icon}
+                <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* APPROACH / IMAGE BREAK */}
+      <section id="approach" className="py-24 md:py-32 bg-foreground text-background">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative aspect-square md:aspect-[4/5] border border-background/20 p-2"
+            >
+              <div className="w-full h-full overflow-hidden bg-background/5">
+                <img 
+                  src={servicesAbstract} 
+                  alt="Data architecture visualization" 
+                  className="w-full h-full object-cover opacity-90 mix-blend-luminosity"
+                />
+              </div>
+            </motion.div>
+            
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary"></div>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">
+                  The Approach
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+                Technology is the easy part. Adoption is where transformation happens.
+              </h2>
+              <div className="space-y-6 text-background/70 mb-12">
+                <p className="text-lg">
+                  Many organizations buy sophisticated HR software only to use 20% of its capabilities. I don't just architect systems; I architect the organizational change required to make them work.
+                </p>
+                <p>
+                  My methodology bridges the traditional divide between IT (who owns the infrastructure) and HR (who owns the human experience), ensuring that intelligent tools like AI actually serve the people using them.
+                </p>
+              </div>
+              
+              <ul className="space-y-4">
+                {[
+                  "Stakeholder alignment & readiness assessment",
+                  "Vendor selection & technology roadmapping",
+                  "Data hygiene & migration strategy",
+                  "Change management & adoption training"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-background/90">
+                    <CheckCircle2 className="w-5 h-5 text-secondary shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT / PROFILE */}
+      <section id="about" className="py-24 md:py-32 bg-background">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid md:grid-cols-12 gap-12 md:gap-24 items-center">
+            <div className="md:col-span-5 order-2 md:order-1">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary"></div>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                  The Advisor
+                </span>
+              </div>
+              <h2 className="text-4xl font-bold tracking-tight text-foreground mb-8">
+                Elena Vance
+              </h2>
+              <div className="space-y-6 text-muted-foreground mb-8 text-lg">
+                <p>
+                  Starting my career as a systems architect before moving into HR leadership, I realized early on that the tools we use dictate the cultures we build.
+                </p>
+                <p>
+                  For the past decade, I have advised Fortune 500 companies on how to restructure their HR operations to leverage emerging technologies, specifically AI and predictive data models, without losing the human element.
+                </p>
+              </div>
+              <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold">
+                <p className="mb-2">— Former VP of HR Tech, GlobalTech Partners</p>
+                <p>— M.S. Information Systems & Organizational Psychology</p>
+              </div>
+            </div>
+            
+            <div className="md:col-span-7 order-1 md:order-2">
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="aspect-[4/3] bg-muted relative"
+              >
+                 <img 
+                  src={aboutOffice} 
+                  alt="Modern office" 
+                  className="w-full h-full object-cover grayscale opacity-90"
+                />
+                <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-secondary p-8 hidden md:flex flex-col justify-end text-foreground shadow-2xl">
+                  <LineChart className="w-12 h-12 mb-auto opacity-50" />
+                  <p className="font-bold text-2xl tracking-tight leading-tight">Data-driven.<br/>Human-centric.</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section id="contact" className="py-32 bg-secondary text-foreground text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+              Ready to modernize your HR infrastructure?
+            </h2>
+            <p className="text-xl text-foreground/80 mb-12 font-medium">
+              Schedule a discovery call to discuss your organization's digital transformation roadmap.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
+                Book a Consultation
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
+                hello@elenavance.co
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
