@@ -580,16 +580,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Skills Bars */}
-              <div className="mb-12 border-t border-border pt-8">
-                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-foreground mb-6">Core Competencies</h3>
-                <SkillBar skill="HR Digital Transformation" targetPercentage={95} delay={0.1} />
-                <SkillBar skill="AI & Machine Learning for HR" targetPercentage={90} delay={0.2} />
-                <SkillBar skill="HR Systems (SAP / Workday)" targetPercentage={92} delay={0.3} />
-                <SkillBar skill="Change Management" targetPercentage={88} delay={0.4} />
-                <SkillBar skill="HR Data Analytics" targetPercentage={85} delay={0.5} />
-              </div>
-
               <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold">
                 <p className="mb-2">— 20+ Years in HR Technology & IT</p>
                 <p>— 50+ Projects Delivered Globally</p>
