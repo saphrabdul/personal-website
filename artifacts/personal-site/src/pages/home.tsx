@@ -181,9 +181,6 @@ export default function Home() {
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-background max-w-2xl">
                 Where Digital Transformation Delivers Real Results
               </h2>
-              <p className="text-background/50 max-w-sm md:text-right text-sm font-mono">
-                Based on 20+ years of global HR transformation engagements across 50+ projects.
-              </p>
             </div>
           </div>
 
