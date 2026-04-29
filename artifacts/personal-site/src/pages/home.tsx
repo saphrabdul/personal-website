@@ -161,10 +161,12 @@ export default function Home() {
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
               className="hidden lg:flex items-center justify-center relative"
             >
-              <img
+              <motion.img
                 src={heroTech}
                 alt="Digital transformation technology"
                 className="w-full max-h-[480px] object-contain"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
                 style={{
                   maskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
                   WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
