@@ -87,10 +87,10 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
             {[
-              { label: "Years Experience", value: "15+" },
-              { label: "Enterprise Deployments", value: "40+" },
+              { label: "Years Experience", value: "20+" },
+              { label: "Projects Globally", value: "50+" },
               { label: "Cost Reduction", value: "32%" },
-              { label: "AI Implementations", value: "12" }
+              { label: "AI Implementations", value: "15+" }
             ].map((stat, i) => (
               <div key={i} className="py-12 md:py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
                 <span className="text-4xl md:text-5xl font-bold text-foreground mb-2">{stat.value}</span>
@@ -227,19 +227,19 @@ export default function Home() {
                 </span>
               </div>
               <h2 className="text-4xl font-bold tracking-tight text-foreground mb-8">
-                Elena Vance
+                Abdul Haseeb Shaik
               </h2>
               <div className="space-y-6 text-muted-foreground mb-8 text-lg">
                 <p>
-                  Starting my career as a systems architect before moving into HR leadership, I realized early on that the tools we use dictate the cultures we build.
+                  With over 20 years spanning IT architecture and HR application delivery, I bring a rare dual perspective: the technical precision to build enterprise systems and the domain depth to transform how organizations manage their people.
                 </p>
                 <p>
-                  For the past decade, I have advised Fortune 500 companies on how to restructure their HR operations to leverage emerging technologies, specifically AI and predictive data models, without losing the human element.
+                  Across 50+ global projects, I have helped organizations reimagine their HR functions — implementing AI-powered recruitment, intelligent analytics, and end-to-end digital transformation strategies that deliver measurable results.
                 </p>
               </div>
               <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold">
-                <p className="mb-2">— Former VP of HR Tech, GlobalTech Partners</p>
-                <p>— M.S. Information Systems & Organizational Psychology</p>
+                <p className="mb-2">— 20+ Years in HR Technology & IT</p>
+                <p>— 50+ Projects Delivered Globally</p>
               </div>
             </div>
             
@@ -286,8 +286,8 @@ export default function Home() {
               <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
                 Book a Consultation
               </Button>
-              <Button size="lg" variant="outline" className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
-                hello@elenavance.co
+              <Button size="lg" variant="outline" onClick={() => window.location.href = 'mailto:saphr.abdul@gmail.com'} className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
+                saphr.abdul@gmail.com
               </Button>
             </div>
           </motion.div>

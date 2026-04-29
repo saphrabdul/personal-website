@@ -33,10 +33,10 @@ export function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 bg-foreground group-hover:bg-secondary transition-colors rounded-sm flex items-center justify-center">
-            <span className="text-background font-mono font-bold text-lg leading-none pt-0.5">E</span>
+            <span className="text-background font-mono font-bold text-lg leading-none pt-0.5">A</span>
           </div>
           <span className="font-bold text-xl tracking-tight hidden sm:inline-block">
-            Elena <span className="text-muted-foreground font-normal">Vance</span>
+            Abdul Haseeb <span className="text-muted-foreground font-normal">Shaik</span>
           </span>
         </Link>
 
