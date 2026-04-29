@@ -5,7 +5,7 @@ outputs = []
 id = "KFsR1aQNT4VxIhAo5Gr3a"
 uri = "file://artifacts/personal-site/src/assets/hero-bg.png"
 type = "image"
-title = "Hero background abstract"
+title = "generated_image"
 
 [[generated]]
 id = "JejVuwmZsFf2l7Di0g4x-"
