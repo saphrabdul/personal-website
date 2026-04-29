@@ -1,131 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight, BarChart2, GraduationCap, Cpu, Users } from "lucide-react";
+import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-
-const ORBIT_DURATION = 22;
-
-const ORBIT_ITEMS = [
-  { label: "Recruitment", Icon: UserPlus },
-  { label: "Performance", Icon: Activity },
-  { label: "AI Analytics", Icon: BrainCircuit },
-  { label: "HR Systems", Icon: Network },
-  { label: "Learning & Dev", Icon: GraduationCap },
-  { label: "Reporting", Icon: BarChart2 },
-  { label: "Workforce", Icon: Users },
-  { label: "Automation", Icon: Cpu },
-];
-
-const HeroOrbit = () => (
-  <div className="relative w-full max-w-[390px] aspect-square flex items-center justify-center select-none mx-auto">
-    {/* Decorative rings */}
-    <div className="absolute rounded-full border border-dashed border-foreground/10" style={{ width: "90%", height: "90%" }} />
-    <div className="absolute rounded-full border border-foreground/8" style={{ width: "65%", height: "65%" }} />
-    <div className="absolute rounded-full border border-foreground/5" style={{ width: "40%", height: "40%" }} />
-
-    {/* Center hub with dual pulse */}
-    <div className="relative z-20 flex items-center justify-center">
-      <motion.div
-        className="absolute rounded-full bg-secondary/10"
-        animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
-        transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
-        style={{ width: 108, height: 108 }}
-      />
-      <motion.div
-        className="absolute rounded-full bg-secondary/20"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        style={{ width: 86, height: 86 }}
-      />
-      <div className="relative w-[64px] h-[64px] rounded-full bg-foreground flex items-center justify-center shadow-xl z-10">
-        <BrainCircuit className="w-7 h-7 text-secondary" />
-      </div>
-    </div>
-
-    {/* Inner orbit — 4 amber dots rotating counter-clockwise */}
-    <motion.div
-      className="absolute inset-0"
-      animate={{ rotate: -360 }}
-      transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
-    >
-      {[45, 135, 225, 315].map((angle, i) => {
-        const rad = (angle * Math.PI) / 180;
-        const r = 20;
-        const x = 50 + r * Math.cos(rad);
-        const y = 50 + r * Math.sin(rad);
-        return (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-secondary shadow-sm"
-            style={{ left: `${x}%`, top: `${y}%`, marginLeft: -4, marginTop: -4 }}
-          />
-        );
-      })}
-    </motion.div>
-
-    {/* Outer orbit — dashed lines + cards rotating clockwise */}
-    <motion.div
-      className="absolute inset-0"
-      animate={{ rotate: 360 }}
-      transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
-    >
-      {/* Connection lines */}
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" style={{ zIndex: 0 }}>
-        {/* Center-to-card spoke lines */}
-        {ORBIT_ITEMS.map((_, i) => {
-          const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
-          const rad = (angle * Math.PI) / 180;
-          const r = 42;
-          const x = 50 + r * Math.cos(rad);
-          const y = 50 + r * Math.sin(rad);
-          return (
-            <line key={`spoke-${i}`} x1="50" y1="50" x2={x} y2={y}
-              stroke="rgba(0,0,0,0.08)" strokeWidth="0.4" strokeDasharray="1.5 2.5" />
-          );
-        })}
-        {/* Polygon connecting all cards */}
-        <polygon
-          points={ORBIT_ITEMS.map((_, i) => {
-            const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
-            const rad = (angle * Math.PI) / 180;
-            const r = 42;
-            return `${50 + r * Math.cos(rad)},${50 + r * Math.sin(rad)}`;
-          }).join(" ")}
-          fill="none"
-          stroke="rgba(0,0,0,0.07)"
-          strokeWidth="0.35"
-          strokeDasharray="2 4"
-        />
-      </svg>
-
-      {/* Cards */}
-      {ORBIT_ITEMS.map(({ label, Icon }, i) => {
-        const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
-        const rad = (angle * Math.PI) / 180;
-        const r = 42;
-        const x = 50 + r * Math.cos(rad);
-        const y = 50 + r * Math.sin(rad);
-        return (
-          <div
-            key={i}
-            style={{ position: "absolute", left: `${x}%`, top: `${y}%`, marginLeft: "-42px", marginTop: "-25px" }}
-          >
-            <motion.div
-              className="w-[84px] h-[50px] bg-background border border-border rounded-lg flex flex-col items-center justify-center shadow-md gap-1"
-              animate={{ rotate: -360 }}
-              transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
-            >
-              <Icon className="w-[14px] h-[14px] text-secondary" />
-              <span className="text-[9px] font-mono font-semibold text-foreground/60 text-center leading-tight px-1">{label}</span>
-            </motion.div>
-          </div>
-        );
-      })}
-    </motion.div>
-  </div>
-);
+import heroTech from "@/assets/hero-tech2.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -238,7 +117,13 @@ export default function Home() {
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
               className="hidden lg:flex items-center justify-center relative"
             >
-              <HeroOrbit />
+              <motion.img
+                src={heroTech}
+                alt="HR Technology"
+                className="w-full max-w-[480px] object-contain drop-shadow-xl"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
             </motion.div>
 
           </div>
