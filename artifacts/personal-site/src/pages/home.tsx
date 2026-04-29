@@ -4,14 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-import {
-  RadarChart,
-  Radar,
-  PolarGrid,
-  PolarAngleAxis,
-  ResponsiveContainer,
-  Tooltip as RechartsTooltip,
-} from "recharts";
 import heroBg from "@/assets/hero-bg.png";
 import robotImg from "@/assets/robot.png";
 import aboutOffice from "@/assets/about-office.png";
@@ -294,82 +286,27 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-
-            {/* LEFT: Radar Chart — HR Competency Map */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9 }}
-              className="border border-background/10 p-8 bg-background/5"
-            >
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-background tracking-tight">Domain Expertise Map</h3>
-                <p className="text-background/40 text-sm mt-1 font-mono">Competency score across HR disciplines</p>
-              </div>
-              <div className="h-[320px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={[
-                    { domain: 'Talent Acquisition', score: 95 },
-                    { domain: 'HR Systems', score: 92 },
-                    { domain: 'AI & Analytics', score: 90 },
-                    { domain: 'Change Mgmt', score: 88 },
-                    { domain: 'L&D Design', score: 85 },
-                    { domain: 'Performance', score: 87 },
-                  ]}>
-                    <defs>
-                      <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="hsl(var(--secondary))" stopOpacity={0.4} />
-                        <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity={0.05} />
-                      </radialGradient>
-                    </defs>
-                    <PolarGrid
-                      stroke="rgba(255,255,255,0.08)"
-                      gridType="polygon"
-                    />
-                    <PolarAngleAxis
-                      dataKey="domain"
-                      tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 11, fontFamily: 'monospace' }}
-                    />
-                    <RechartsTooltip
-                      contentStyle={{ backgroundColor: '#0a0f1e', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', borderRadius: '2px', fontSize: 12 }}
-                      formatter={(value) => [`${value}`, 'Score']}
-                    />
-                    <Radar
-                      dataKey="score"
-                      stroke="hsl(var(--secondary))"
-                      strokeWidth={2}
-                      fill="url(#radarFill)"
-                      dot={{ fill: 'hsl(var(--secondary))', r: 3, strokeWidth: 0 }}
-                    />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
-
-            {/* RIGHT: Circular Ring Gauges — Automation Potential */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9 }}
-              className="border border-background/10 p-8 bg-background/5"
-            >
-              <div className="mb-8">
-                <h3 className="text-lg font-bold text-background tracking-tight">HR Process Automation Potential</h3>
-                <p className="text-background/40 text-sm mt-1 font-mono">Digitization impact by function</p>
-              </div>
-              <div className="grid grid-cols-3 gap-6 place-items-center">
-                <CircularRing label="Payroll & Benefits" percentage={87} delay={0.1} />
-                <CircularRing label="Recruitment Screening" percentage={82} delay={0.2} />
-                <CircularRing label="Employee Onboarding" percentage={76} delay={0.3} />
-                <CircularRing label="Performance Reporting" percentage={71} delay={0.4} />
-                <CircularRing label="L&D Administration" percentage={68} delay={0.5} />
-                <CircularRing label="HR Analytics" percentage={64} delay={0.6} />
-              </div>
-            </motion.div>
-          </div>
+          {/* Circular Ring Gauges — Automation Potential */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="border border-background/10 p-8 md:p-10 bg-background/5"
+          >
+            <div className="mb-10">
+              <h3 className="text-lg font-bold text-background tracking-tight">HR Process Automation Potential</h3>
+              <p className="text-background/40 text-sm mt-1 font-mono">Digitization impact by function — based on 50+ global transformation projects</p>
+            </div>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-6 place-items-center">
+              <CircularRing label="Payroll & Benefits" percentage={87} delay={0.1} />
+              <CircularRing label="Recruitment Screening" percentage={82} delay={0.2} />
+              <CircularRing label="Employee Onboarding" percentage={76} delay={0.3} />
+              <CircularRing label="Performance Reporting" percentage={71} delay={0.4} />
+              <CircularRing label="L&D Administration" percentage={68} delay={0.5} />
+              <CircularRing label="HR Analytics" percentage={64} delay={0.6} />
+            </div>
+          </motion.div>
 
           {/* Impact Ticker Row */}
           <motion.div
@@ -699,9 +636,11 @@ export default function Home() {
               Schedule a discovery call to discuss your organization's digital transformation roadmap.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
-                Book a Consultation
-              </Button>
+              <a href="mailto:saphr.abdul@gmail.com?subject=Consultation%20Request%20—%20HR%20Digital%20Transformation&body=Hi%20Abdul%2C%0A%0AI%27d%20like%20to%20schedule%20a%20discovery%20call%20to%20discuss%20our%20HR%20transformation%20roadmap.%0A%0AOrganization%3A%20%0AKey%20challenge%3A%20%0APreferred%20time%3A%20%0A%0AThank%20you">
+                <Button size="lg" variant="default" className="rounded-none h-16 px-10 text-lg shadow-xl hover:shadow-2xl transition-all">
+                  Book a Consultation
+                </Button>
+              </a>
               <Button size="lg" variant="outline" onClick={() => window.location.href = 'mailto:saphr.abdul@gmail.com'} className="rounded-none h-16 px-10 text-lg border-foreground text-foreground hover:bg-foreground hover:text-background bg-transparent transition-all">
                 saphr.abdul@gmail.com
               </Button>
