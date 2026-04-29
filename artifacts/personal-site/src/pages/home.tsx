@@ -1,10 +1,81 @@
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
+import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight, BarChart2, GraduationCap, Cpu, Users } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-import heroTech from "@/assets/hero-tech2.png";
+
+const ORBIT_DURATION = 22;
+
+const ORBIT_ITEMS = [
+  { label: "Recruitment", Icon: UserPlus },
+  { label: "Performance", Icon: Activity },
+  { label: "AI Analytics", Icon: BrainCircuit },
+  { label: "HR Systems", Icon: Network },
+  { label: "Learning & Dev", Icon: GraduationCap },
+  { label: "Reporting", Icon: BarChart2 },
+  { label: "Workforce", Icon: Users },
+  { label: "Automation", Icon: Cpu },
+];
+
+const HeroOrbit = () => (
+  <div className="relative w-full aspect-square flex items-center justify-center select-none">
+    {/* Decorative rings */}
+    <div className="absolute rounded-full border border-dashed border-foreground/10" style={{ width: "88%", height: "88%" }} />
+    <div className="absolute rounded-full border border-foreground/6" style={{ width: "64%", height: "64%" }} />
+    <div className="absolute rounded-full border border-foreground/4" style={{ width: "40%", height: "40%" }} />
+
+    {/* Center hub */}
+    <div className="relative z-10 flex items-center justify-center">
+      <motion.div
+        className="absolute rounded-full bg-secondary/15"
+        animate={{ scale: [1, 1.25, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        style={{ width: 90, height: 90 }}
+      />
+      <div className="relative w-[70px] h-[70px] rounded-full bg-foreground flex items-center justify-center shadow-xl z-10">
+        <BrainCircuit className="w-8 h-8 text-secondary" />
+      </div>
+    </div>
+
+    {/* Orbit ring — rotates */}
+    <motion.div
+      className="absolute inset-0"
+      animate={{ rotate: 360 }}
+      transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
+    >
+      {ORBIT_ITEMS.map(({ label, Icon }, i) => {
+        const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
+        const rad = (angle * Math.PI) / 180;
+        const r = 42;
+        const x = 50 + r * Math.cos(rad);
+        const y = 50 + r * Math.sin(rad);
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: `${x}%`,
+              top: `${y}%`,
+              marginLeft: "-46px",
+              marginTop: "-27px",
+            }}
+          >
+            {/* Counter-rotate so cards stay upright */}
+            <motion.div
+              className="w-[92px] h-[54px] bg-background border border-border rounded-lg flex flex-col items-center justify-center shadow-md gap-1"
+              animate={{ rotate: -360 }}
+              transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
+            >
+              <Icon className="w-4 h-4 text-secondary" />
+              <span className="text-[10px] font-mono font-semibold text-foreground/60 text-center leading-tight px-1">{label}</span>
+            </motion.div>
+          </div>
+        );
+      })}
+    </motion.div>
+  </div>
+);
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -117,17 +188,7 @@ export default function Home() {
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
               className="hidden lg:flex items-center justify-center relative"
             >
-              <motion.img
-                src={heroTech}
-                alt="Digital transformation technology"
-                className="w-full max-h-[480px] object-contain"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                style={{
-                  maskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
-                }}
-              />
+              <HeroOrbit />
             </motion.div>
 
           </div>
