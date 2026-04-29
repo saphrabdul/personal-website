@@ -54,6 +54,24 @@ uri = "file://artifacts/personal-site/src/assets/hero-option-3.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "RMJCAcAUb6rvCFGMpecGf"
+uri = "file://artifacts/personal-site/src/assets/hero-option-4.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "dTz_qhhUOH1VVi6nqacQt"
+uri = "file://artifacts/personal-site/src/assets/hero-option-5.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "o31iNySUrRvY6otI7nwL1"
+uri = "file://artifacts/personal-site/src/assets/hero-option-6.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "gPJBT25bfxk_8JWyJeKX9"
 uri = "file://artifacts/personal-site/src/assets/hero-option-1.png"
@@ -71,3 +89,21 @@ id = "syfUPTwuKbCD0yR2gc5Cr"
 uri = "file://artifacts/personal-site/src/assets/hero-option-3.png"
 type = "image"
 title = "Option 3 — HR & AI Analytics Dashboard"
+
+[[outputs]]
+id = "sWTzvNbEGSdYT0xwpANTR"
+uri = "file://artifacts/personal-site/src/assets/hero-option-4.png"
+type = "image"
+title = "Option 4 — Circuit Paths + Human Elements"
+
+[[outputs]]
+id = "lVDZiTVMOEO4GwKg-8WOR"
+uri = "file://artifacts/personal-site/src/assets/hero-option-5.png"
+type = "image"
+title = "Option 5 — Enterprise Ecosystem Hub (SAP-style)"
+
+[[outputs]]
+id = "iWOo8v019rVwjleVCfQw-"
+uri = "file://artifacts/personal-site/src/assets/hero-option-6.png"
+type = "image"
+title = "Option 6 — AI Neural Globe"
