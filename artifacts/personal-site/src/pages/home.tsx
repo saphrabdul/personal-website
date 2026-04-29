@@ -161,12 +161,14 @@ export default function Home() {
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
               className="hidden lg:flex items-center justify-center relative"
             >
-              <div className="absolute inset-0 rounded-full blur-3xl opacity-10 bg-secondary scale-75" />
               <img
                 src={heroTech}
                 alt="Digital transformation technology"
-                className="relative z-10 w-full max-w-sm xl:max-w-md object-contain drop-shadow-2xl"
-                style={{ filter: "drop-shadow(0 0 40px hsl(var(--secondary) / 0.2))" }}
+                className="w-full h-full object-cover"
+                style={{
+                  maskImage: "radial-gradient(ellipse 80% 85% at 55% 50%, black 40%, transparent 80%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 80% 85% at 55% 50%, black 40%, transparent 80%)",
+                }}
               />
             </motion.div>
 
