@@ -122,10 +122,10 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-background">
+      <section className="relative flex items-center pt-16 pb-12 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER} className="pt-12">
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-secondary" />
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
