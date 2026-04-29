@@ -1,13 +1,26 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut } from "lucide-react";
+import { ArrowRight, BrainCircuit, Activity, LineChart, Network, CheckCircle2, UserPlus, Users, GraduationCap, Target, BadgeDollarSign, HeartHandshake, LogOut, ChevronDown, ChevronUp } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as RechartsTooltip,
+  ResponsiveContainer,
+  ReferenceLine,
+  BarChart,
+  Bar,
+} from "recharts";
 import heroBg from "@/assets/hero-bg.png";
 import aboutOffice from "@/assets/about-office.png";
 import servicesAbstract from "@/assets/services-abstract.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", duration: 1.5 } },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, duration: 1.5 } },
 };
 
 const STAGGER_CONTAINER = {
@@ -20,10 +33,138 @@ const STAGGER_CONTAINER = {
   },
 };
 
+const CountUpStat = ({ target, label, suffix }: { target: number, label: string, suffix: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.ceil(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return (
+    <div ref={ref} className="py-12 md:py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
+      <span className="text-4xl md:text-5xl font-bold text-foreground mb-2">
+        {count}{suffix}
+      </span>
+      <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{label}</span>
+    </div>
+  );
+};
+
+const ExpertiseCard = ({ icon, title, desc, bullets, delay }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: delay, duration: 0.8 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`bg-muted/40 p-10 border transition-all duration-300 relative flex flex-col h-full ${isHovered ? 'border-secondary/50 -translate-y-2 shadow-lg shadow-secondary/5' : 'border-border'}`}
+    >
+      <div className={`absolute inset-0 border-2 transition-opacity duration-300 pointer-events-none ${isHovered ? 'opacity-10 border-secondary' : 'opacity-0 border-transparent'}`}></div>
+      <div>{icon}</div>
+      <h3 className="text-xl font-bold mb-4 text-foreground">{title}</h3>
+      <p className="text-muted-foreground leading-relaxed mb-6">
+        {desc}
+      </p>
+      
+      <div className="mt-auto pt-4">
+        <button 
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center gap-2 text-sm font-semibold text-secondary hover:text-secondary/80 transition-colors"
+          data-testid={`expand-expertise-${title.replace(/\s+/g, '-').toLowerCase()}`}
+        >
+          {isExpanded ? 'Show Less' : 'Learn More'}
+          {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        </button>
+
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <ul className="pt-6 space-y-3">
+                {bullets.map((bullet: string, i: number) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                    <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5 shrink-0" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+};
+
+const SkillBar = ({ skill, targetPercentage, delay }: { skill: string, targetPercentage: number, delay: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <div className="mb-6" ref={ref}>
+      <div className="flex justify-between mb-2">
+        <span className="font-semibold text-sm text-foreground">{skill}</span>
+        <span className="font-mono text-sm text-secondary">{targetPercentage}%</span>
+      </div>
+      <div className="h-2 w-full bg-muted rounded-none overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${targetPercentage}%` } : { width: 0 }}
+          transition={{ duration: 1.5, delay, ease: "easeOut" }}
+          className="h-full bg-secondary"
+        />
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const maturityData = [
+    { name: 'Business as Usual', score: 10 },
+    { name: 'Present & Active', score: 25 },
+    { name: 'Formalized', score: 40 },
+    { name: 'Strategic', score: 65 },
+    { name: 'Converged', score: 85 },
+    { name: 'Innovative', score: 100 },
+  ];
+
+  const automationData = [
+    { process: 'Payroll & Benefits', potential: 87 },
+    { process: 'Recruitment Screening', potential: 82 },
+    { process: 'Employee Onboarding', potential: 76 },
+    { process: 'Performance Reporting', potential: 71 },
+    { process: 'L&D Administration', potential: 68 },
+    { process: 'HR Analytics', potential: 64 },
+  ];
 
   return (
     <div className="w-full">
@@ -86,17 +227,121 @@ export default function Home() {
       <section className="border-y border-border bg-muted/30">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
-            {[
-              { label: "Years Experience", value: "20+" },
-              { label: "Projects Globally", value: "50+" },
-              { label: "Cost Reduction", value: "32%" },
-              { label: "AI Implementations", value: "15+" }
-            ].map((stat, i) => (
-              <div key={i} className="py-12 md:py-16 px-4 md:px-8 text-center flex flex-col items-center justify-center">
-                <span className="text-4xl md:text-5xl font-bold text-foreground mb-2">{stat.value}</span>
-                <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{stat.label}</span>
+            <CountUpStat target={20} label="Years Experience" suffix="+" />
+            <CountUpStat target={50} label="Projects Globally" suffix="+" />
+            <CountUpStat target={32} label="Cost Reduction" suffix="%" />
+            <CountUpStat target={15} label="AI Implementations" suffix="+" />
+          </div>
+        </div>
+      </section>
+
+      {/* HR TRANSFORMATION IMPACT SECTION */}
+      <section className="py-24 md:py-32 bg-background border-b border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-8 bg-secondary"></div>
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">
+                The Data
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl mb-4">
+              Where Digital Transformation Delivers Real Results
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Based on 20+ years of global HR transformation engagements.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Chart A: Area Chart */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="bg-muted/20 border border-border p-6 md:p-8"
+            >
+              <h3 className="text-xl font-bold text-foreground mb-6">Digital HR Maturity Journey</h3>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={maturityData} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
+                    <defs>
+                      <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="hsl(var(--secondary))" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="hsl(var(--secondary))" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
+                    <XAxis 
+                      dataKey="name" 
+                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
+                      tickLine={false}
+                      axisLine={{ stroke: 'hsl(var(--border))' }}
+                      angle={-45}
+                      textAnchor="end"
+                      height={60}
+                    />
+                    <YAxis 
+                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
+                      tickLine={false}
+                      axisLine={false}
+                    />
+                    <RechartsTooltip 
+                      contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))', borderRadius: '4px' }}
+                      itemStyle={{ color: 'hsl(var(--secondary))', fontWeight: 'bold' }}
+                    />
+                    <ReferenceLine y={35} stroke="hsl(var(--muted-foreground))" strokeDasharray="3 3" label={{ position: 'top', value: 'Industry Average', fill: 'hsl(var(--muted-foreground))', fontSize: 12 }} />
+                    <Area 
+                      type="monotone" 
+                      dataKey="score" 
+                      stroke="hsl(var(--secondary))" 
+                      fillOpacity={1} 
+                      fill="url(#colorScore)" 
+                      strokeWidth={2}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
-            ))}
+            </motion.div>
+
+            {/* Chart B: Bar Chart */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-muted/20 border border-border p-6 md:p-8"
+            >
+              <h3 className="text-xl font-bold text-foreground mb-6">HR Process Automation Potential</h3>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={automationData} layout="vertical" margin={{ top: 5, right: 30, left: 40, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--border))" />
+                    <XAxis 
+                      type="number" 
+                      tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 12 }}
+                      tickLine={false}
+                      axisLine={{ stroke: 'hsl(var(--border))' }}
+                    />
+                    <YAxis 
+                      dataKey="process" 
+                      type="category" 
+                      tick={{ fill: 'hsl(var(--foreground))', fontSize: 12 }}
+                      tickLine={false}
+                      axisLine={false}
+                      width={140}
+                    />
+                    <RechartsTooltip 
+                      cursor={{ fill: 'hsl(var(--muted)/0.5)' }}
+                      contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))', borderRadius: '4px' }}
+                      formatter={(value) => [`${value}%`, 'Potential']}
+                    />
+                    <Bar dataKey="potential" fill="hsl(var(--secondary))" radius={[0, 4, 4, 0]} barSize={24} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -121,39 +366,43 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <BrainCircuit className="w-8 h-8 text-secondary mb-6" />,
-                title: "AI Integration for HR",
-                desc: "Deploying predictive analytics, conversational AI, and automated screening workflows to optimize recruitment and performance management."
-              },
-              {
-                icon: <Network className="w-8 h-8 text-secondary mb-6" />,
-                title: "Digital Transformation",
-                desc: "End-to-end strategic planning to move legacy HR operations into cloud-native, integrated, and agile ecosystems."
-              },
-              {
-                icon: <Activity className="w-8 h-8 text-secondary mb-6" />,
-                title: "HR Systems Architecture",
-                desc: "Bridging the gap between IT and HR to select, architect, and implement Workday, SAP, or modern composable HR stacks."
-              }
-            ].map((service, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="bg-muted/40 p-10 border border-border group hover:border-secondary/50 transition-colors"
-              >
-                {service.icon}
-                <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.desc}
-                </p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+            <ExpertiseCard
+              icon={<BrainCircuit className="w-8 h-8 text-secondary mb-6" />}
+              title="AI Integration for HR"
+              desc="Deploying predictive analytics, conversational AI, and automated screening workflows to optimize recruitment and performance management."
+              bullets={[
+                "Predictive workforce analytics",
+                "AI-powered candidate screening",
+                "Chatbot HR helpdesk",
+                "Automated compliance monitoring"
+              ]}
+              delay={0}
+            />
+            <ExpertiseCard
+              icon={<Network className="w-8 h-8 text-secondary mb-6" />}
+              title="Digital Transformation"
+              desc="End-to-end strategic planning to move legacy HR operations into cloud-native, integrated, and agile ecosystems."
+              bullets={[
+                "HR tech stack assessment",
+                "Cloud migration roadmaps",
+                "Change management programs",
+                "ROI measurement frameworks"
+              ]}
+              delay={0.1}
+            />
+            <ExpertiseCard
+              icon={<Activity className="w-8 h-8 text-secondary mb-6" />}
+              title="HR Systems Architecture"
+              desc="Bridging the gap between IT and HR to select, architect, and implement Workday, SAP, or modern composable HR stacks."
+              bullets={[
+                "Workday / SAP SuccessFactors",
+                "System integration & APIs",
+                "Data migration & governance",
+                "Custom reporting dashboards"
+              ]}
+              delay={0.2}
+            />
           </div>
         </div>
       </section>
@@ -370,7 +619,7 @@ export default function Home() {
               <h2 className="text-4xl font-bold tracking-tight text-foreground mb-8">
                 Abdul Haseeb Shaik
               </h2>
-              <div className="space-y-6 text-muted-foreground mb-8 text-lg">
+              <div className="space-y-6 text-muted-foreground mb-12 text-lg">
                 <p>
                   With over 20 years spanning IT architecture and HR application delivery, I bring a rare dual perspective: the technical precision to build enterprise systems and the domain depth to transform how organizations manage their people.
                 </p>
@@ -378,6 +627,17 @@ export default function Home() {
                   Across 50+ global projects, I have helped organizations reimagine their HR functions — implementing AI-powered recruitment, intelligent analytics, and end-to-end digital transformation strategies that deliver measurable results.
                 </p>
               </div>
+
+              {/* Skills Bars */}
+              <div className="mb-12 border-t border-border pt-8">
+                <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-foreground mb-6">Core Competencies</h3>
+                <SkillBar skill="HR Digital Transformation" targetPercentage={95} delay={0.1} />
+                <SkillBar skill="AI & Machine Learning for HR" targetPercentage={90} delay={0.2} />
+                <SkillBar skill="HR Systems (SAP / Workday)" targetPercentage={92} delay={0.3} />
+                <SkillBar skill="Change Management" targetPercentage={88} delay={0.4} />
+                <SkillBar skill="HR Data Analytics" targetPercentage={85} delay={0.5} />
+              </div>
+
               <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold">
                 <p className="mb-2">— 20+ Years in HR Technology & IT</p>
                 <p>— 50+ Projects Delivered Globally</p>
