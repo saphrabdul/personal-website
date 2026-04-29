@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "KFsR1aQNT4VxIhAo5Gr3a"
@@ -36,3 +35,39 @@ id = "xKzjdTxlbPxyDdQay6tGf"
 uri = "file://artifacts/personal-site/src/assets/hero-tech2.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "7cUJKTj2j-jwEgTiUXvr2"
+uri = "file://artifacts/personal-site/src/assets/hero-option-1.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "PrIVT7t8CHq4FYfw469cT"
+uri = "file://artifacts/personal-site/src/assets/hero-option-2.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "0upR6f2rzz4SRXIqy-jkk"
+uri = "file://artifacts/personal-site/src/assets/hero-option-3.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "gPJBT25bfxk_8JWyJeKX9"
+uri = "file://artifacts/personal-site/src/assets/hero-option-1.png"
+type = "image"
+title = "Option 1 — AI Brain + Enterprise Systems (isometric)"
+
+[[outputs]]
+id = "_NzcFMiRPUD7fjnchA6iL"
+uri = "file://artifacts/personal-site/src/assets/hero-option-2.png"
+type = "image"
+title = "Option 2 — Glowing Network Sphere (abstract)"
+
+[[outputs]]
+id = "syfUPTwuKbCD0yR2gc5Cr"
+uri = "file://artifacts/personal-site/src/assets/hero-option-3.png"
+type = "image"
+title = "Option 3 — HR & AI Analytics Dashboard"
