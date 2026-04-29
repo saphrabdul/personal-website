@@ -1,0 +1,44 @@
+@keyframes darkSplitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes darkSplitPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.dark-split-spin {
+  animation: darkSplitSpin 120s linear infinite;
+}
+
+.dark-split-pulse {
+  animation: darkSplitPulse 6s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-card {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.delay-1 { animation-delay: 0.0s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 1.0s; }
+.delay-4 { animation-delay: 1.5s; }
+.delay-5 { animation-delay: 0.2s; }
+.delay-6 { animation-delay: 0.7s; }
+.delay-7 { animation-delay: 1.2s; }
+.delay-8 { animation-delay: 1.7s; }
