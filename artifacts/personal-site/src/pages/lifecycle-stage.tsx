@@ -1,9 +1,51 @@
 import { useParams, Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, ArrowLeft, ArrowUpRight, CheckCircle2, Wrench, TrendingUp, Lightbulb, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { lifecycleStages, getStageBySlug } from "@/data/lifecycle-stages";
 import NotFound from "@/pages/not-found";
+import { useState, useEffect, useRef } from "react";
+
+const RollingMetric = ({ value, accentColor, delay }: { value: string; accentColor: string; delay: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const [count, setCount] = useState(0);
+
+  const match = value.match(/^(↓\s*|↑\s*)?(\d+(?:\.\d+)?)(.*)$/);
+  const prefix = match?.[1] ?? "";
+  const target = match ? parseFloat(match[2]) : 0;
+  const suffix = match?.[3] ?? "";
+  const isFloat = target % 1 !== 0;
+
+  useEffect(() => {
+    if (!isInView || target === 0) return;
+    let start = 0;
+    const duration = 1800;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(isFloat ? parseFloat(start.toFixed(1)) : Math.ceil(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isInView, target, isFloat]);
+
+  return (
+    <div ref={ref} className="flex items-baseline gap-0.5 flex-wrap">
+      {prefix && (
+        <span className="text-2xl font-bold mr-0.5" style={{ color: accentColor }}>{prefix.trim()}&nbsp;</span>
+      )}
+      <span className="text-3xl font-bold tabular-nums" style={{ color: accentColor }}>
+        {isFloat ? count.toFixed(1) : count}
+      </span>
+      <span className="text-3xl font-bold" style={{ color: accentColor }}>{suffix}</span>
+    </div>
+  );
+};
 
 const FADE_UP = {
   hidden: { opacity: 0, y: 28 },
@@ -146,9 +188,9 @@ export default function LifecycleStagePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.6 }}
-                className="px-6 py-8 flex flex-col gap-1"
+                className="px-6 py-8 flex flex-col gap-2"
               >
-                <span className="text-3xl font-bold" style={{ color: stage.accentColor }}>{m.value}</span>
+                <RollingMetric value={m.value} accentColor={stage.accentColor} delay={i * 0.08} />
                 <span className="text-sm text-muted-foreground font-mono leading-snug">{m.label}</span>
               </motion.div>
             ))}
