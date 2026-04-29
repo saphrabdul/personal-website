@@ -124,8 +124,8 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative flex items-center pt-16 pb-12 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER} className="pt-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-secondary" />
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
@@ -164,10 +164,10 @@ export default function Home() {
               <img
                 src={heroTech}
                 alt="Digital transformation technology"
-                className="w-full h-auto object-contain"
+                className="w-full max-h-[480px] object-contain"
                 style={{
-                  maskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 85%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 90% 90% at 50% 50%, black 50%, transparent 85%)",
+                  maskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 55% 50%, black 55%, transparent 88%)",
                 }}
               />
             </motion.div>
