@@ -1,25 +1,30 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { label: "Expertise", href: "/expertise" },
+  { label: "HR Lifecycle", href: "/lifecycle" },
+  { label: "Approach", href: "/approach" },
+  { label: "About", href: "/about" },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
 
   return (
     <header
@@ -40,22 +45,61 @@ export function Navbar() {
           </span>
         </Link>
 
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <button onClick={() => scrollToSection("expertise")} className="text-foreground/70 hover:text-foreground transition-colors">Expertise</button>
-          <button onClick={() => scrollToSection("hire-to-retire")} className="text-foreground/70 hover:text-foreground transition-colors">HR Lifecycle</button>
-          <button onClick={() => scrollToSection("approach")} className="text-foreground/70 hover:text-foreground transition-colors">Approach</button>
-          <button onClick={() => scrollToSection("about")} className="text-foreground/70 hover:text-foreground transition-colors">About</button>
-          <Button onClick={() => scrollToSection("contact")} variant="secondary" className="font-semibold px-6 rounded-none">
-            Let's Talk
-          </Button>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "transition-colors",
+                location === link.href || location.startsWith(link.href + "/")
+                  ? "text-foreground font-semibold"
+                  : "text-foreground/60 hover:text-foreground"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/about#contact">
+            <Button variant="secondary" className="font-semibold px-6 rounded-none">
+              Let's Talk
+            </Button>
+          </Link>
         </nav>
 
-        <div className="md:hidden">
-           <Button onClick={() => scrollToSection("contact")} variant="secondary" size="sm" className="font-semibold rounded-none">
-            Contact
-          </Button>
-        </div>
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-foreground"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-background border-t border-border px-6 py-4 space-y-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "block py-2 text-sm font-medium transition-colors",
+                location === link.href ? "text-secondary" : "text-foreground/70 hover:text-foreground"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link href="/about#contact">
+            <Button variant="secondary" size="sm" className="font-semibold rounded-none w-full mt-2">
+              Let's Talk
+            </Button>
+          </Link>
+        </div>
+      )}
     </header>
   );
 }

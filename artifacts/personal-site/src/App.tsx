@@ -4,7 +4,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import ExpertisePage from "@/pages/expertise";
+import LifecycleOverviewPage from "@/pages/lifecycle-overview";
 import LifecycleStagePage from "@/pages/lifecycle-stage";
+import ApproachPage from "@/pages/approach";
+import AboutPage from "@/pages/about";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
@@ -17,7 +21,11 @@ function Router() {
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />
+          <Route path="/expertise" component={ExpertisePage} />
+          <Route path="/lifecycle" component={LifecycleOverviewPage} />
           <Route path="/lifecycle/:slug" component={LifecycleStagePage} />
+          <Route path="/approach" component={ApproachPage} />
+          <Route path="/about" component={AboutPage} />
           <Route component={NotFound} />
         </Switch>
       </main>
