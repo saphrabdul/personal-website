@@ -303,20 +303,24 @@ export default function LifecycleStagePage() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {stage.tools.map((tool, i) => (
-                  <motion.div
+                  <motion.a
                     key={i}
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05, duration: 0.5 }}
-                    className="flex items-center gap-3 px-4 py-3 border border-border bg-muted/20 hover:border-border/80 transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 border border-border bg-muted/20 hover:border-secondary/50 hover:bg-secondary/5 transition-all duration-200 group cursor-pointer"
                   >
                     <div
                       className="w-1.5 h-1.5 flex-shrink-0 rounded-full"
                       style={{ backgroundColor: stage.accentColor }}
                     />
-                    <span className="text-sm font-medium text-foreground/80">{tool}</span>
-                  </motion.div>
+                    <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors flex-1">{tool.name}</span>
+                    <ArrowUpRight className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                  </motion.a>
                 ))}
               </div>
               <p className="text-xs text-muted-foreground mt-5 font-mono">

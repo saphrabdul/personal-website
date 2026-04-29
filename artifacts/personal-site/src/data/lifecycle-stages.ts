@@ -10,6 +10,11 @@ export interface ImpactMetric {
   label: string;
 }
 
+export interface Tool {
+  name: string;
+  url: string;
+}
+
 export interface LifecycleStage {
   slug: string;
   stage: string;
@@ -20,7 +25,7 @@ export interface LifecycleStage {
   challenge: string;
   overview: string;
   processSteps: ProcessStep[];
-  tools: string[];
+  tools: Tool[];
   metrics: ImpactMetric[];
   principles: { title: string; desc: string }[];
 }
@@ -60,14 +65,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "LinkedIn Talent Insights",
-      "Phenom People",
-      "Beamery",
-      "SmartDreamers",
-      "Workday Recruiting",
-      "Glassdoor Employer",
-      "HireEZ",
-      "Paradox (Olivia AI)",
+      { name: "LinkedIn Talent Insights", url: "https://business.linkedin.com/talent-solutions/talent-insights" },
+      { name: "Phenom People", url: "https://www.phenom.com" },
+      { name: "Beamery", url: "https://beamery.com" },
+      { name: "SmartDreamers", url: "https://www.smartdreamers.com" },
+      { name: "Workday Recruiting", url: "https://www.workday.com/en-us/products/human-capital-management/recruiting.html" },
+      { name: "Glassdoor Employer", url: "https://www.glassdoor.com/employers" },
+      { name: "HireEZ", url: "https://hireez.com" },
+      { name: "Paradox (Olivia AI)", url: "https://www.paradox.ai" },
     ],
     metrics: [
       { value: "45%", label: "Increase in qualified applicant rate" },
@@ -124,14 +129,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Greenhouse",
-      "SmartRecruiters",
-      "Workday Recruiting",
-      "HireVue",
-      "Pymetrics",
-      "Vervoe",
-      "DocuSign",
-      "Paradox (Olivia AI)",
+      { name: "Greenhouse", url: "https://www.greenhouse.com" },
+      { name: "SmartRecruiters", url: "https://www.smartrecruiters.com" },
+      { name: "Workday Recruiting", url: "https://www.workday.com/en-us/products/human-capital-management/recruiting.html" },
+      { name: "HireVue", url: "https://www.hirevue.com" },
+      { name: "Pymetrics", url: "https://www.pymetrics.ai" },
+      { name: "Vervoe", url: "https://vervoe.com" },
+      { name: "DocuSign", url: "https://www.docusign.com" },
+      { name: "Paradox (Olivia AI)", url: "https://www.paradox.ai" },
     ],
     metrics: [
       { value: "40%", label: "Reduction in average time-to-hire" },
@@ -188,14 +193,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Enboarder",
-      "Workday HCM",
-      "ServiceNow HRSD",
-      "BambooHR",
-      "Culture Amp",
-      "Docebo",
-      "Slack / Microsoft Teams",
-      "DocuSign",
+      { name: "Enboarder", url: "https://enboarder.com" },
+      { name: "Workday HCM", url: "https://www.workday.com/en-us/products/human-capital-management/overview.html" },
+      { name: "ServiceNow HRSD", url: "https://www.servicenow.com/products/hr-service-delivery.html" },
+      { name: "BambooHR", url: "https://www.bamboohr.com" },
+      { name: "Culture Amp", url: "https://www.cultureamp.com" },
+      { name: "Docebo", url: "https://www.docebo.com" },
+      { name: "Slack / Microsoft Teams", url: "https://slack.com" },
+      { name: "DocuSign", url: "https://www.docusign.com" },
     ],
     metrics: [
       { value: "50%", label: "Faster time-to-full-productivity" },
@@ -252,14 +257,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Workday Learning",
-      "Cornerstone OnDemand",
-      "Degreed",
-      "LinkedIn Learning",
-      "Docebo",
-      "SAP SuccessFactors LMS",
-      "Moodle / TalentLMS",
-      "EdCast",
+      { name: "Workday Learning", url: "https://www.workday.com/en-us/products/human-capital-management/learning.html" },
+      { name: "Cornerstone OnDemand", url: "https://www.cornerstoneondemand.com" },
+      { name: "Degreed", url: "https://degreed.com" },
+      { name: "LinkedIn Learning", url: "https://www.linkedin.com/learning" },
+      { name: "Docebo", url: "https://www.docebo.com" },
+      { name: "SAP SuccessFactors LMS", url: "https://www.sap.com/products/hcm/learning-management.html" },
+      { name: "Moodle / TalentLMS", url: "https://moodle.org" },
+      { name: "EdCast", url: "https://www.edcast.com" },
     ],
     metrics: [
       { value: "55%", label: "Increase in course completion rates" },
@@ -316,14 +321,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Lattice",
-      "15Five",
-      "Workday Performance",
-      "SAP SuccessFactors",
-      "Betterworks",
-      "Mercer Benchmark Database",
-      "CompTrak",
-      "Visier Workforce Analytics",
+      { name: "Lattice", url: "https://lattice.com" },
+      { name: "15Five", url: "https://www.15five.com" },
+      { name: "Workday Performance", url: "https://www.workday.com/en-us/products/human-capital-management/talent-management.html" },
+      { name: "SAP SuccessFactors", url: "https://www.sap.com/products/hcm.html" },
+      { name: "Betterworks", url: "https://www.betterworks.com" },
+      { name: "Mercer Benchmark Database", url: "https://www.mercer.com/solutions/workforce-and-careers/talent-strategy/compensation-data-and-benchmarking/" },
+      { name: "CompTrak", url: "https://www.comptrak.com" },
+      { name: "Visier Workforce Analytics", url: "https://www.visier.com" },
     ],
     metrics: [
       { value: "45%", label: "Increase in employee engagement scores" },
@@ -380,14 +385,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Glint (Microsoft Viva)",
-      "Peakon (Workday)",
-      "Culture Amp",
-      "Visier People Analytics",
-      "IBM Watson Talent",
-      "Workday Workforce Planning",
-      "Eightfold AI",
-      "Gloat (Talent Marketplace)",
+      { name: "Glint (Microsoft Viva)", url: "https://www.microsoft.com/en-us/microsoft-viva/glint" },
+      { name: "Peakon (Workday)", url: "https://www.workday.com/en-us/products/peakon-employee-voice/overview.html" },
+      { name: "Culture Amp", url: "https://www.cultureamp.com" },
+      { name: "Visier People Analytics", url: "https://www.visier.com" },
+      { name: "IBM Watson Talent", url: "https://www.ibm.com/products/watson-talent-frameworks" },
+      { name: "Workday Workforce Planning", url: "https://www.workday.com/en-us/products/adaptive-planning/overview.html" },
+      { name: "Eightfold AI", url: "https://eightfold.ai" },
+      { name: "Gloat (Talent Marketplace)", url: "https://gloat.com" },
     ],
     metrics: [
       { value: "35%", label: "Reduction in voluntary attrition" },
@@ -444,14 +449,14 @@ export const lifecycleStages: LifecycleStage[] = [
       },
     ],
     tools: [
-      "Workday HCM",
-      "ServiceNow HRSD",
-      "Leapsome",
-      "Alchemer (SurveyGizmo)",
-      "Rippling",
-      "LinkedIn Alumni",
-      "Okta / Azure AD",
-      "Visier People Analytics",
+      { name: "Workday HCM", url: "https://www.workday.com/en-us/products/human-capital-management/overview.html" },
+      { name: "ServiceNow HRSD", url: "https://www.servicenow.com/products/hr-service-delivery.html" },
+      { name: "Leapsome", url: "https://www.leapsome.com" },
+      { name: "Alchemer (SurveyGizmo)", url: "https://www.alchemer.com" },
+      { name: "Rippling", url: "https://www.rippling.com" },
+      { name: "LinkedIn Alumni", url: "https://www.linkedin.com/alumni" },
+      { name: "Okta / Azure AD", url: "https://www.okta.com" },
+      { name: "Visier People Analytics", url: "https://www.visier.com" },
     ],
     metrics: [
       { value: "80%", label: "Knowledge capture rate achieved pre-departure" },
