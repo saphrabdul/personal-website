@@ -5,7 +5,6 @@ import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } f
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
 import heroBg from "@/assets/hero-bg.png";
-import robotImg from "@/assets/robot.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -130,7 +129,7 @@ export default function Home() {
         </div>
 
         <div className="container relative z-10 mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid gap-12 items-center max-w-4xl">
             <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-secondary" />
@@ -161,21 +160,6 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Robot image */}
-            <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="hidden lg:flex items-end justify-center relative"
-            >
-              <div className="absolute inset-0 rounded-full blur-3xl opacity-20 bg-secondary scale-75 translate-y-10" />
-              <img
-                src={robotImg}
-                alt="AI-powered HR technology"
-                className="relative z-10 w-full max-w-sm xl:max-w-md object-contain drop-shadow-2xl"
-                style={{ filter: "drop-shadow(0 0 40px hsl(var(--secondary) / 0.25))" }}
-              />
-            </motion.div>
           </div>
         </div>
       </section>
