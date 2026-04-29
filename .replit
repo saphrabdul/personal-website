@@ -38,4 +38,3 @@ externalPort = 3000
 [userenv]
 
 [userenv.shared]
-CONTACT_EMAIL = "saphr.abdul@gmail.com"

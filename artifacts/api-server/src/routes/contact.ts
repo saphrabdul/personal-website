@@ -18,9 +18,9 @@ contactRouter.post("/contact", async (req, res) => {
 
   const smtpUser = process.env["SMTP_USER"];
   const smtpPass = process.env["SMTP_PASS"];
-  const contactEmail = process.env["CONTACT_EMAIL"];
+  const contactEmail = "saphr.abdul@gmail.com";
 
-  if (!smtpUser || !smtpPass || !contactEmail) {
+  if (!smtpUser || !smtpPass) {
     req.log.warn("Email env vars not configured — logging submission instead");
     req.log.info(
       { name, email, company, message },
