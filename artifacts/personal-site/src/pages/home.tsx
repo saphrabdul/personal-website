@@ -212,7 +212,7 @@ export default function Home() {
                 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-8"
               >
                 Connecting People,<br/>
-                Processes, and Technology<br/>
+                Process, and Technology<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">
                   with AI.
                 </span>
