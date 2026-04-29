@@ -169,6 +169,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* LIFECYCLE STRIP — quick links to all 7 stages */}
+      <section className="py-24 bg-muted/20 border-b border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-12"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-8 bg-secondary" />
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">HR Lifecycle</span>
+            </div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">The full employee journey — stage by stage.</h2>
+              <Link href="/lifecycle">
+                <Button variant="outline" size="sm" className="rounded-none font-semibold shrink-0">
+                  View All Stages <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          <div className="relative">
+            <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-border z-0" />
+            <div className="grid grid-cols-2 md:grid-cols-7 gap-4 relative z-10">
+              {lifecycleStages.map((item, i) => {
+                const StageIcon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.7 }}
+                  >
+                    <Link href={`/lifecycle/${item.slug}`}>
+                      <div className="flex flex-col group cursor-pointer">
+                        <div
+                          className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 mb-4 shadow-sm group-hover:text-background transition-colors relative"
+                          style={{ borderColor: item.accentColor, color: item.accentColor }}
+                        >
+                          <StageIcon className="w-6 h-6" />
+                        </div>
+                        <span className="font-mono text-xs text-muted-foreground mb-1">{item.stage}</span>
+                        <h3 className="font-bold text-sm text-foreground group-hover:text-secondary transition-colors">{item.title}</h3>
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* HR TRANSFORMATION IMPACT SECTION */}
       <section className="py-24 md:py-32 bg-background text-foreground border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
@@ -277,63 +334,6 @@ export default function Home() {
                 </Link>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LIFECYCLE STRIP — quick links to all 7 stages */}
-      <section className="py-24 bg-muted/20 border-b border-border">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-12"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">HR Lifecycle</span>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground">The full employee journey — stage by stage.</h2>
-              <Link href="/lifecycle">
-                <Button variant="outline" size="sm" className="rounded-none font-semibold shrink-0">
-                  View All Stages <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-
-          <div className="relative">
-            <div className="hidden md:block absolute top-10 left-0 right-0 h-px bg-border z-0" />
-            <div className="grid grid-cols-2 md:grid-cols-7 gap-4 relative z-10">
-              {lifecycleStages.map((item, i) => {
-                const StageIcon = item.icon;
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.7 }}
-                  >
-                    <Link href={`/lifecycle/${item.slug}`}>
-                      <div className="flex flex-col group cursor-pointer">
-                        <div
-                          className="flex items-center justify-center w-20 h-20 rounded-none bg-background border-2 mb-4 shadow-sm group-hover:text-background transition-colors relative"
-                          style={{ borderColor: item.accentColor, color: item.accentColor }}
-                        >
-                          <StageIcon className="w-6 h-6" />
-                        </div>
-                        <span className="font-mono text-xs text-muted-foreground mb-1">{item.stage}</span>
-                        <h3 className="font-bold text-sm text-foreground group-hover:text-secondary transition-colors">{item.title}</h3>
-                      </div>
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>
