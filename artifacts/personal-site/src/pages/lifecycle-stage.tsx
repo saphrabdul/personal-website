@@ -90,7 +90,7 @@ export default function LifecycleStagePage() {
           >
             <Link href="/" className="hover:text-secondary transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link href="/#lifecycle" className="hover:text-secondary transition-colors">HR Lifecycle</Link>
+            <Link href="/lifecycle" className="hover:text-secondary transition-colors">HR Lifecycle</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-secondary">{stage.title}</span>
           </motion.div>

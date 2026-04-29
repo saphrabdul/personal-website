@@ -18,7 +18,22 @@ const queryClient = new QueryClient();
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    const hash = window.location.hash;
+    if (hash) {
+      // Give the page a frame to render, then scroll to the anchor
+      const id = hash.replace("#", "");
+      const attempt = (tries: number) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (tries > 0) {
+          requestAnimationFrame(() => attempt(tries - 1));
+        }
+      };
+      requestAnimationFrame(() => attempt(10));
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
   }, [location]);
   return null;
 }

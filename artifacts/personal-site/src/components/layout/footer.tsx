@@ -18,40 +18,52 @@ export function Footer() {
               Transforming organizations through intelligent HR tech and AI integration. Building the future of human capital.
             </p>
             <div className="flex gap-4">
-              {/* Placeholder socials */}
-              <a href="#" className="w-10 h-10 border border-background/20 rounded flex items-center justify-center hover:bg-secondary hover:text-foreground hover:border-secondary transition-all">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-background/20 rounded flex items-center justify-center hover:bg-secondary hover:text-foreground hover:border-secondary transition-all text-sm font-bold"
+              >
                 in
               </a>
-              <a href="#" className="w-10 h-10 border border-background/20 rounded flex items-center justify-center hover:bg-secondary hover:text-foreground hover:border-secondary transition-all">
-                x
+              <a
+                href="mailto:saphr.abdul@gmail.com"
+                className="w-10 h-10 border border-background/20 rounded flex items-center justify-center hover:bg-secondary hover:text-foreground hover:border-secondary transition-all text-xs font-bold"
+              >
+                @
               </a>
             </div>
           </div>
-          
+
           <div>
-            <h4 className="font-mono text-sm uppercase tracking-wider text-secondary mb-6">Expertise</h4>
+            <h4 className="font-mono text-sm uppercase tracking-wider text-secondary mb-6">Explore</h4>
             <ul className="space-y-4 text-background/70">
-              <li><a href="#" className="hover:text-secondary transition-colors">Digital Transformation</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">AI for HR</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">System Integration</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">HR Analytics</a></li>
+              <li><Link href="/expertise" className="hover:text-secondary transition-colors">Expertise</Link></li>
+              <li><Link href="/lifecycle" className="hover:text-secondary transition-colors">HR Lifecycle</Link></li>
+              <li><Link href="/approach" className="hover:text-secondary transition-colors">Approach</Link></li>
+              <li><Link href="/about" className="hover:text-secondary transition-colors">About</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-mono text-sm uppercase tracking-wider text-secondary mb-6">Connect</h4>
             <ul className="space-y-4 text-background/70">
-              <li><a href="mailto:saphr.abdul@gmail.com" className="hover:text-secondary transition-colors">saphr.abdul@gmail.com</a></li>
+              <li>
+                <a href="mailto:saphr.abdul@gmail.com" className="hover:text-secondary transition-colors">
+                  saphr.abdul@gmail.com
+                </a>
+              </li>
+              <li>
+                <Link href="/about#contact" className="hover:text-secondary transition-colors">
+                  Book a Consultation
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-background/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/40">
           <p>© {new Date().getFullYear()} Abdul Haseeb Shaik. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-background transition-colors">Privacy</a>
-            <a href="#" className="hover:text-background transition-colors">Terms</a>
-          </div>
         </div>
       </div>
     </footer>
