@@ -117,12 +117,10 @@ export default function Home() {
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
               className="hidden lg:flex items-center justify-center relative"
             >
-              <motion.img
+              <img
                 src={heroTech}
                 alt="HR Technology"
                 className="w-full max-w-[480px] object-contain drop-shadow-xl"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
             </motion.div>
 
