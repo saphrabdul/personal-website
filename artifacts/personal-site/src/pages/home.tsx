@@ -42,46 +42,6 @@ const CountUpStat = ({ target, label, suffix }: { target: number; label: string;
   );
 };
 
-const CircularRing = ({ label, percentage, delay }: { label: string; percentage: number; delay: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const radius = 38;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
-
-  return (
-    <div ref={ref} className="flex flex-col items-center gap-3">
-      <div className="relative w-24 h-24 md:w-28 md:h-28">
-        <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-          <circle cx="50" cy="50" r={radius} fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="7" />
-          <motion.circle
-            cx="50" cy="50" r={radius}
-            fill="none"
-            stroke="hsl(var(--secondary))"
-            strokeWidth="7"
-            strokeLinecap="butt"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            animate={isInView ? { strokeDashoffset: offset } : { strokeDashoffset: circumference }}
-            transition={{ duration: 1.8, delay, ease: "easeOut" }}
-            style={{ filter: "drop-shadow(0 0 6px hsl(var(--secondary) / 0.6))" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.span
-            className="font-bold text-base md:text-lg text-secondary"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: delay + 0.3, duration: 0.4 }}
-          >
-            {percentage}%
-          </motion.span>
-        </div>
-      </div>
-      <span className="text-xs text-center font-mono uppercase tracking-wider text-muted-foreground max-w-[90px] leading-tight">{label}</span>
-    </div>
-  );
-};
 
 const navSections = [
   {
@@ -244,65 +204,6 @@ export default function Home() {
               })}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* HR TRANSFORMATION IMPACT SECTION */}
-      <section className="py-24 md:py-32 bg-background text-foreground border-b border-border">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">The Data</span>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-2xl">
-                Where Digital Transformation Delivers Real Results
-              </h2>
-            </div>
-          </div>
-
-          {/* Circular Ring Gauges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="border border-border p-8 md:p-10 bg-muted/20"
-          >
-            <div className="mb-10">
-              <h3 className="text-lg font-bold text-foreground tracking-tight">HR Process Automation Potential</h3>
-              <p className="text-muted-foreground text-sm mt-1 font-mono">Digitization impact by function — based on 50+ global transformation projects</p>
-            </div>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-6 place-items-center">
-              <CircularRing label="Payroll & Benefits" percentage={87} delay={0.1} />
-              <CircularRing label="Recruitment Screening" percentage={82} delay={0.2} />
-              <CircularRing label="Employee Onboarding" percentage={76} delay={0.3} />
-              <CircularRing label="Performance Reporting" percentage={71} delay={0.4} />
-              <CircularRing label="L&D Administration" percentage={68} delay={0.5} />
-              <CircularRing label="HR Analytics" percentage={64} delay={0.6} />
-            </div>
-          </motion.div>
-
-          {/* Impact Ticker Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-8 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border border border-border"
-          >
-            {[
-              { value: "↓ 40%", label: "Average reduction in time-to-hire after ATS + AI implementation" },
-              { value: "↑ 3×", label: "Increase in HR self-service adoption after digital onboarding overhaul" },
-              { value: "↓ 28%", label: "HR operational cost reduction achieved in enterprise transformation programs" },
-            ].map((item, i) => (
-              <div key={i} className="p-8 flex flex-col gap-2">
-                <span className="text-4xl font-bold text-secondary">{item.value}</span>
-                <span className="text-muted-foreground text-sm leading-relaxed font-mono">{item.label}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
