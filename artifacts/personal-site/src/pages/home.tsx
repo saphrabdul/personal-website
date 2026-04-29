@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
+import heroTech from "@/assets/hero-tech.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -123,14 +124,14 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
-          <div className="grid gap-12 items-center max-w-4xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-secondary" />
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
               </motion.div>
 
-              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-8">
+              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-3xl sm:text-4xl md:text-4xl font-bold tracking-tight text-foreground leading-[1.15] mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
               </motion.h1>
@@ -151,6 +152,22 @@ export default function Home() {
                   </Button>
                 </Link>
               </motion.div>
+            </motion.div>
+
+            {/* Hero Tech Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.97 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+              className="hidden lg:flex items-center justify-center relative"
+            >
+              <div className="absolute inset-0 rounded-full blur-3xl opacity-10 bg-secondary scale-75" />
+              <img
+                src={heroTech}
+                alt="Digital transformation technology"
+                className="relative z-10 w-full max-w-sm xl:max-w-md object-contain drop-shadow-2xl"
+                style={{ filter: "drop-shadow(0 0 40px hsl(var(--secondary) / 0.2))" }}
+              />
             </motion.div>
 
           </div>
