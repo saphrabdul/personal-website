@@ -19,31 +19,74 @@ const ORBIT_ITEMS = [
 ];
 
 const HeroOrbit = () => (
-  <div className="relative w-full aspect-square flex items-center justify-center select-none">
+  <div className="relative w-full max-w-[390px] aspect-square flex items-center justify-center select-none mx-auto">
     {/* Decorative rings */}
-    <div className="absolute rounded-full border border-dashed border-foreground/10" style={{ width: "88%", height: "88%" }} />
-    <div className="absolute rounded-full border border-foreground/6" style={{ width: "64%", height: "64%" }} />
-    <div className="absolute rounded-full border border-foreground/4" style={{ width: "40%", height: "40%" }} />
+    <div className="absolute rounded-full border border-dashed border-foreground/10" style={{ width: "90%", height: "90%" }} />
+    <div className="absolute rounded-full border border-foreground/8" style={{ width: "65%", height: "65%" }} />
+    <div className="absolute rounded-full border border-foreground/5" style={{ width: "40%", height: "40%" }} />
 
-    {/* Center hub */}
-    <div className="relative z-10 flex items-center justify-center">
+    {/* Center hub with dual pulse */}
+    <div className="relative z-20 flex items-center justify-center">
       <motion.div
-        className="absolute rounded-full bg-secondary/15"
-        animate={{ scale: [1, 1.25, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        style={{ width: 90, height: 90 }}
+        className="absolute rounded-full bg-secondary/10"
+        animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
+        style={{ width: 108, height: 108 }}
       />
-      <div className="relative w-[70px] h-[70px] rounded-full bg-foreground flex items-center justify-center shadow-xl z-10">
-        <BrainCircuit className="w-8 h-8 text-secondary" />
+      <motion.div
+        className="absolute rounded-full bg-secondary/20"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        style={{ width: 86, height: 86 }}
+      />
+      <div className="relative w-[64px] h-[64px] rounded-full bg-foreground flex items-center justify-center shadow-xl z-10">
+        <BrainCircuit className="w-7 h-7 text-secondary" />
       </div>
     </div>
 
-    {/* Orbit ring — rotates */}
+    {/* Inner orbit — 4 amber dots rotating counter-clockwise */}
+    <motion.div
+      className="absolute inset-0"
+      animate={{ rotate: -360 }}
+      transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
+    >
+      {[45, 135, 225, 315].map((angle, i) => {
+        const rad = (angle * Math.PI) / 180;
+        const r = 20;
+        const x = 50 + r * Math.cos(rad);
+        const y = 50 + r * Math.sin(rad);
+        return (
+          <div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-secondary shadow-sm"
+            style={{ left: `${x}%`, top: `${y}%`, marginLeft: -4, marginTop: -4 }}
+          />
+        );
+      })}
+    </motion.div>
+
+    {/* Outer orbit — dashed lines + cards rotating clockwise */}
     <motion.div
       className="absolute inset-0"
       animate={{ rotate: 360 }}
       transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
     >
+      {/* Dashed connection lines from center to each card */}
+      <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+        {ORBIT_ITEMS.map((_, i) => {
+          const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
+          const rad = (angle * Math.PI) / 180;
+          const r = 42;
+          const x = 50 + r * Math.cos(rad);
+          const y = 50 + r * Math.sin(rad);
+          return (
+            <line key={i} x1="50%" y1="50%" x2={`${x}%`} y2={`${y}%`}
+              stroke="rgba(0,0,0,0.09)" strokeWidth="1" strokeDasharray="3 5" />
+          );
+        })}
+      </svg>
+
+      {/* Cards */}
       {ORBIT_ITEMS.map(({ label, Icon }, i) => {
         const angle = (i / ORBIT_ITEMS.length) * 360 - 90;
         const rad = (angle * Math.PI) / 180;
@@ -53,22 +96,15 @@ const HeroOrbit = () => (
         return (
           <div
             key={i}
-            style={{
-              position: "absolute",
-              left: `${x}%`,
-              top: `${y}%`,
-              marginLeft: "-46px",
-              marginTop: "-27px",
-            }}
+            style={{ position: "absolute", left: `${x}%`, top: `${y}%`, marginLeft: "-42px", marginTop: "-25px" }}
           >
-            {/* Counter-rotate so cards stay upright */}
             <motion.div
-              className="w-[92px] h-[54px] bg-background border border-border rounded-lg flex flex-col items-center justify-center shadow-md gap-1"
+              className="w-[84px] h-[50px] bg-background border border-border rounded-lg flex flex-col items-center justify-center shadow-md gap-1"
               animate={{ rotate: -360 }}
               transition={{ duration: ORBIT_DURATION, repeat: Infinity, ease: "linear" }}
             >
-              <Icon className="w-4 h-4 text-secondary" />
-              <span className="text-[10px] font-mono font-semibold text-foreground/60 text-center leading-tight px-1">{label}</span>
+              <Icon className="w-[14px] h-[14px] text-secondary" />
+              <span className="text-[9px] font-mono font-semibold text-foreground/60 text-center leading-tight px-1">{label}</span>
             </motion.div>
           </div>
         );
