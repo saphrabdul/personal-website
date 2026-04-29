@@ -82,15 +82,22 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative flex items-center pt-16 pb-12 overflow-hidden bg-background">
+      <section className="relative flex items-start pt-20 pb-12 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
+
+          {/* Label above both columns */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <div className="h-px w-8 bg-secondary" />
+            <span className="font-mono text-base font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
+          </motion.div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
-              <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-3 mb-8">
-                <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-base font-bold uppercase tracking-widest text-foreground">Digital Transformation Advisor</span>
-              </motion.div>
-
               <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
