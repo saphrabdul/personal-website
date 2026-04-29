@@ -50,17 +50,17 @@ export default function ApproachPage() {
   return (
     <div className="w-full">
       {/* PAGE HERO */}
-      <section className="pt-40 pb-20 bg-foreground text-background border-b border-background/10">
+      <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">The Approach</span>
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Approach</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-background max-w-3xl mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground max-w-3xl mb-6">
               Technology is the easy part. Adoption is where transformation happens.
             </h1>
-            <p className="text-lg text-background/60 max-w-2xl">
+            <p className="text-lg text-muted-foreground max-w-2xl">
               Many organizations buy sophisticated HR software only to use 20% of its capabilities. The methodology here bridges IT and HR to make intelligent tools actually serve the people using them.
             </p>
           </motion.div>
