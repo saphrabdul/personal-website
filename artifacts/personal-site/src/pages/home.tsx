@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BrainCircuit, Activity, Network, UserPlus, ArrowUpRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { lifecycleStages } from "@/data/lifecycle-stages";
-import heroTech from "@/assets/hero-tech2.png";
+import heroImg from "@/assets/robot-hr.png";
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -118,7 +118,7 @@ export default function Home() {
               className="hidden lg:flex items-center justify-center relative"
             >
               <img
-                src={heroTech}
+                src={heroImg}
                 alt="HR Technology"
                 className="w-full max-w-[480px] object-contain drop-shadow-xl"
               />
