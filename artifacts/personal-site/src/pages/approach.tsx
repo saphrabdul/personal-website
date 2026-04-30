@@ -196,11 +196,11 @@ export default function ApproachPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-foreground">
+      <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <h2 className="text-3xl font-bold text-background mb-2">Want to see this applied to your organization?</h2>
-            <p className="text-background/50 font-mono text-sm">Let's start with a no-obligation discovery call.</p>
+            <h2 className="text-3xl font-bold text-foreground mb-2">Want to see this applied to your organization?</h2>
+            <p className="text-muted-foreground font-mono text-sm">Let's start with a no-obligation discovery call.</p>
           </div>
           <Link href="/about#contact">
             <Button size="lg" className="rounded-none h-14 px-8 font-semibold shrink-0">

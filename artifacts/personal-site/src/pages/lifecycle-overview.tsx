@@ -144,11 +144,11 @@ export default function LifecycleOverviewPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-foreground">
+      <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <h2 className="text-3xl font-bold text-background mb-2">Ready to transform your HR lifecycle?</h2>
-            <p className="text-background/50 font-mono text-sm">
+            <h2 className="text-3xl font-bold text-foreground mb-2">Ready to transform your HR lifecycle?</h2>
+            <p className="text-muted-foreground font-mono text-sm">
               Whether you need to fix one broken stage or rebuild the entire employee journey.
             </p>
           </div>

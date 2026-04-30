@@ -140,11 +140,11 @@ export default function ExpertisePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-foreground">
+      <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <h2 className="text-3xl font-bold text-background mb-2">Ready to discuss your transformation?</h2>
-            <p className="text-background/50 font-mono text-sm">Tell me where you are — I'll tell you how to move forward.</p>
+            <h2 className="text-3xl font-bold text-foreground mb-2">Ready to discuss your transformation?</h2>
+            <p className="text-muted-foreground font-mono text-sm">Tell me where you are — I'll tell you how to move forward.</p>
           </div>
           <Link href="/about#contact">
             <Button size="lg" className="rounded-none h-14 px-8 font-semibold shrink-0">

@@ -429,7 +429,7 @@ export default function LifecycleStagePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-foreground">
+      <section className="py-20 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -444,10 +444,10 @@ export default function LifecycleStagePage() {
               </span>
               <div className="h-px w-8" style={{ backgroundColor: stage.accentColor }}></div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-background mb-4 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 max-w-2xl mx-auto">
               Let's fix this together — with no consultant-speak and no wasted time.
             </h2>
-            <p className="text-background/50 mb-10 max-w-xl mx-auto">
+            <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
               Tell me where you are and I will tell you exactly what to do about it — and how long it will take.
             </p>
             <Link href="/about#contact">
