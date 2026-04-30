@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Expertise", href: "/expertise" },
   { label: "HR Lifecycle", href: "/lifecycle" },
   { label: "Approach", href: "/approach" },
-  { label: "About", href: "/about" },
+  { label: "About Me", href: "/about" },
 ];
 
 export function Navbar() {
