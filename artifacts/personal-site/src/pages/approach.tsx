@@ -3,6 +3,7 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import servicesAbstract from "@/assets/approach-digital.png";
+import heroImg from "@/assets/robot-hr.png";
 
 const steps = [
   {
@@ -52,18 +53,33 @@ export default function ApproachPage() {
       {/* PAGE HERO */}
       <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Approach</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground max-w-3xl mb-6">
-              Technology is the easy part. Adoption is where transformation happens.
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Many organizations buy sophisticated HR software only to use 20% of its capabilities. The methodology here bridges IT and HR to make intelligent tools actually serve the people using them.
-            </p>
-          </motion.div>
+          <div className="grid md:grid-cols-12 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="md:col-span-7">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary" />
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Approach</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground max-w-3xl mb-6">
+                Technology is the easy part. Adoption is where transformation happens.
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Many organizations buy sophisticated HR software only to use 20% of its capabilities. The methodology here bridges IT and HR to make intelligent tools actually serve the people using them.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:col-span-5 hidden md:flex items-center justify-center"
+            >
+              <img
+                src={heroImg}
+                alt="HR Technology Approach"
+                className="w-full max-w-[420px] object-contain drop-shadow-xl"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

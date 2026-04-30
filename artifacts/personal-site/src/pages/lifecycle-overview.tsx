@@ -3,7 +3,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import { lifecycleStages } from "@/data/lifecycle-stages";
 import { Button } from "@/components/ui/button";
-import lifecycleDiagram from "@/assets/hr-lifecycle-diagram.png";
+import heroImg from "@/assets/robot-hr.png";
 
 export default function LifecycleOverviewPage() {
   return (
@@ -34,7 +34,7 @@ export default function LifecycleOverviewPage() {
               className="md:col-span-5 hidden md:flex items-center justify-center"
             >
               <img
-                src={lifecycleDiagram}
+                src={heroImg}
                 alt="AI-Powered HR Lifecycle"
                 className="w-full max-w-[420px] object-contain drop-shadow-xl"
               />
