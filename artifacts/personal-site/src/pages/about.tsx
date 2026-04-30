@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import aboutOffice from "@/assets/about-office.png";
+import aboutOffice from "@/assets/services-abstract.png";
 import abdulProfile from "@/assets/abdul-profile.png";
 
 const timeline = [
