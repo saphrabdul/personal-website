@@ -81,12 +81,12 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="aspect-[4/3] bg-muted relative"
+                className="aspect-[3/4] bg-[#050a18] relative"
               >
                 <img
                   src={aboutOffice}
-                  alt="Consultant at work"
-                  className="w-full h-full object-cover opacity-90"
+                  alt="Digital AI systems"
+                  className="w-full h-full object-contain"
                 />
                 <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-secondary p-8 hidden md:flex flex-col justify-end text-foreground shadow-2xl">
                   <LineChart className="w-12 h-12 mb-auto opacity-50" />
