@@ -3,7 +3,7 @@ import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucid
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import aboutOffice from "@/assets/about-office.png";
-import abdulProfile from "@/assets/abdul-profile-nobg.png";
+import abdulProfile from "@/assets/abdul-profile-final.png";
 
 const timeline = [
   { year: "2004–2010", role: "IT Systems Architect", detail: "Enterprise ERP and HR systems implementation across manufacturing and financial services clients in the Middle East and South Asia." },
