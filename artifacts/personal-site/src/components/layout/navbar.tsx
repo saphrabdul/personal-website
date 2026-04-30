@@ -16,6 +16,8 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [location] = useLocation();
 
+  const darkHero = location === "/about" && !scrolled;
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -37,11 +39,11 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-foreground group-hover:bg-secondary transition-colors rounded-sm flex items-center justify-center">
+          <div className={cn("w-8 h-8 transition-colors rounded-sm flex items-center justify-center", darkHero ? "bg-background/20 group-hover:bg-secondary" : "bg-foreground group-hover:bg-secondary")}>
             <span className="text-background font-mono font-bold text-lg leading-none pt-0.5">A</span>
           </div>
-          <span className="font-bold text-xl tracking-tight hidden sm:inline-block">
-            Abdul Haseeb <span className="text-muted-foreground font-normal">Shaik</span>
+          <span className={cn("font-bold text-xl tracking-tight hidden sm:inline-block", darkHero ? "text-background" : "text-foreground")}>
+            Abdul Haseeb <span className={cn("font-normal", darkHero ? "text-background/50" : "text-muted-foreground")}>Shaik</span>
           </span>
         </Link>
 
@@ -53,9 +55,9 @@ export function Navbar() {
               href={link.href}
               className={cn(
                 "transition-colors",
-                location === link.href || location.startsWith(link.href + "/")
-                  ? "text-foreground font-semibold"
-                  : "text-foreground/60 hover:text-foreground"
+                darkHero
+                  ? location === link.href ? "text-background font-semibold" : "text-background/60 hover:text-background"
+                  : location === link.href ? "text-foreground font-semibold" : "text-foreground/60 hover:text-foreground"
               )}
             >
               {link.label}
@@ -70,7 +72,7 @@ export function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-foreground"
+          className={cn("md:hidden", darkHero ? "text-background" : "text-foreground")}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >

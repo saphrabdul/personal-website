@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
-import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2, MapPin, Briefcase, Globe2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import aboutOffice from "@/assets/about-office.png";
 import abdulProfile from "@/assets/abdul-profile.png";
+
+const stats = [
+  { value: "20+", label: "Years Experience" },
+  { value: "50+", label: "Global Projects" },
+  { value: "12+", label: "Industries Served" },
+  { value: "3", label: "Continents" },
+];
 
 const timeline = [
   { year: "2004–2010", role: "IT Systems Architect", detail: "Enterprise ERP and HR systems implementation across manufacturing and financial services clients in the Middle East and South Asia." },
@@ -12,43 +19,86 @@ const timeline = [
   { year: "2020–Present", role: "Independent Advisor", detail: "Advising global organizations on end-to-end HR transformation — from strategy through technology selection to adoption." },
 ];
 
+const pillars = [
+  { icon: Briefcase, label: "HR Technology", sub: "SAP SuccessFactors · Workday · Oracle HCM" },
+  { icon: Globe2, label: "Global Delivery", sub: "Middle East · Europe · South Asia" },
+  { icon: MapPin, label: "Based in", sub: "United Kingdom" },
+];
+
 export default function AboutPage() {
   return (
     <div className="w-full">
-      {/* PAGE HERO */}
-      <section className="pt-40 pb-20 bg-background border-b border-border">
+      {/* PAGE HERO — dark, full-bleed */}
+      <section className="pt-40 pb-0 bg-foreground text-background overflow-hidden">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
+          <div className="grid md:grid-cols-12 gap-0 items-end">
+            {/* Text column */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="md:col-span-3 flex justify-center md:justify-start"
-            >
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl">
-                <img
-                  src={abdulProfile}
-                  alt="Abdul Haseeb Shaik"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="md:col-span-9"
+              className="md:col-span-7 pb-16"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Advisor</span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-background/40">The Advisor</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-4">Abdul Haseeb Shaik</h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                Digital Transformation & HR Technology Advisor with 20+ years of experience and 50+ global projects delivered.
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-background leading-none mb-6">
+                Abdul<br />Haseeb<br />Shaik
+              </h1>
+              <p className="text-lg text-background/60 max-w-xl mb-10">
+                Digital Transformation & HR Technology Advisor bridging the gap between enterprise IT and the human side of work.
               </p>
+              <div className="flex flex-wrap gap-4">
+                {pillars.map((p, i) => (
+                  <div key={i} className="flex items-center gap-3 border border-background/10 px-4 py-3 bg-background/5">
+                    <p.icon className="w-4 h-4 text-secondary shrink-0" />
+                    <div>
+                      <p className="text-xs font-mono uppercase tracking-wider text-background/40">{p.label}</p>
+                      <p className="text-sm text-background/80 font-medium">{p.sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </motion.div>
+
+            {/* Profile photo — bleeds into the stats bar */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:col-span-5 hidden md:flex items-end justify-end"
+            >
+              <div className="w-full max-w-sm relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-transparent to-transparent z-10" />
+                <img
+                  src={abdulProfile}
+                  alt="Abdul Haseeb Shaik"
+                  className="w-full object-cover object-top aspect-[3/4]"
+                  style={{ filter: "grayscale(20%)" }}
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS BAR */}
+      <section className="bg-secondary">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-foreground/20">
+            {stats.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + i * 0.08, duration: 0.6 }}
+                className="py-8 px-6 text-center"
+              >
+                <p className="text-4xl font-bold text-foreground tracking-tight">{s.value}</p>
+                <p className="text-xs font-mono uppercase tracking-widest text-foreground/60 mt-1">{s.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -56,22 +106,30 @@ export default function AboutPage() {
       {/* BIO + IMAGE */}
       <section className="py-24 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-12 gap-12 md:gap-24 items-center">
+          <div className="grid md:grid-cols-12 gap-12 md:gap-20 items-center">
             <div className="md:col-span-5 order-2 md:order-1">
-              <div className="space-y-6 text-muted-foreground mb-12 text-lg">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-px w-8 bg-secondary" />
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Background</span>
+              </div>
+              <div className="space-y-5 text-muted-foreground leading-relaxed">
+                <p className="text-lg text-foreground font-medium leading-relaxed">
+                  With over 20 years spanning IT architecture and HR application delivery, Abdul brings a rare dual perspective.
+                </p>
                 <p>
-                  With over 20 years spanning IT architecture and HR application delivery, Abdul brings a rare dual perspective: the technical precision to build enterprise systems and the domain depth to transform how organizations manage their people.
+                  The technical precision to build enterprise systems and the domain depth to transform how organizations manage their people — two disciplines that rarely coexist in one advisor.
                 </p>
                 <p>
                   Across 50+ global projects, he has helped organizations reimagine their HR functions — implementing AI-powered recruitment, intelligent analytics, and end-to-end digital transformation strategies that deliver measurable results.
                 </p>
                 <p>
-                  Working across industries including financial services, manufacturing, healthcare, and government, Abdul's approach is defined by one principle: transformation only counts if people actually use it differently.
+                  Working across financial services, manufacturing, healthcare, and government, Abdul's approach is defined by one principle: transformation only counts if people actually use it differently.
                 </p>
               </div>
-              <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold space-y-2">
-                <p>— 20+ Years in HR Technology & IT</p>
-                <p>— 50+ Projects Delivered Globally</p>
+              <div className="mt-10 border-l-2 border-secondary pl-6">
+                <p className="text-foreground font-semibold text-lg leading-snug italic">
+                  "Technology is the easy part. Getting 5,000 employees to work differently — that's the real transformation."
+                </p>
               </div>
             </div>
 
@@ -99,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* CAREER TIMELINE */}
-      <section className="py-24 bg-muted/20 border-b border-border">
+      <section className="py-24 bg-foreground text-background border-b border-background/10">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -110,39 +168,48 @@ export default function AboutPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Career Journey</span>
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-background/40">Career Journey</span>
             </div>
-            <h2 className="text-4xl font-bold tracking-tight text-foreground">20 years. One clear direction.</h2>
+            <h2 className="text-4xl font-bold tracking-tight text-background">20 years. One clear direction.</h2>
           </motion.div>
 
-          <div className="space-y-0">
-            {timeline.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.7 }}
-                className="flex gap-8 py-8 border-b border-border last:border-0"
-              >
-                <div className="w-32 flex-shrink-0">
-                  <span className="font-mono text-xs text-muted-foreground">{t.year}</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-foreground mb-2">{t.role}</h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{t.detail}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-[7.5rem] top-0 bottom-0 w-px bg-background/10 hidden md:block" />
+
+            <div className="space-y-0">
+              {timeline.map((t, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.7 }}
+                  className="flex gap-0 md:gap-12 py-8 border-b border-background/10 last:border-0 items-start"
+                >
+                  <div className="w-32 flex-shrink-0 pt-1 hidden md:block">
+                    <span className="font-mono text-xs text-background/40 block">{t.year}</span>
+                  </div>
+                  {/* dot */}
+                  <div className="relative hidden md:flex items-start justify-center w-4 flex-shrink-0 pt-2">
+                    <div className="w-3 h-3 rounded-full bg-secondary border-2 border-foreground z-10" />
+                  </div>
+                  <div className="flex-1 md:pl-8">
+                    <span className="font-mono text-xs text-background/40 mb-2 block md:hidden">{t.year}</span>
+                    <h4 className="font-bold text-background text-lg mb-2">{t.role}</h4>
+                    <p className="text-background/50 text-sm leading-relaxed">{t.detail}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CONTACT FORM */}
-      <section id="contact" className="py-24 md:py-32 bg-foreground text-background">
+      <section id="contact" className="py-24 md:py-32 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16 items-start">
-            {/* Left — headline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,15 +218,15 @@ export default function AboutPage() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">Get in Touch</span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Get in Touch</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
                 Ready to modernize your HR infrastructure?
               </h2>
-              <p className="text-background/60 text-lg leading-relaxed mb-8">
+              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
                 Whether you need to fix one stage or redesign the entire employee journey — send a message and I'll get back to you personally.
               </p>
-              <ul className="space-y-3 text-background/70 text-sm">
+              <ul className="space-y-3 text-muted-foreground text-sm">
                 {[
                   "No obligation discovery call",
                   "Response within 24 hours",
@@ -173,7 +240,6 @@ export default function AboutPage() {
               </ul>
             </motion.div>
 
-            {/* Right — form */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -222,8 +288,8 @@ function ContactForm() {
     return (
       <div className="border border-secondary/30 bg-secondary/10 p-10 flex flex-col items-center text-center gap-4">
         <CheckCircle2 className="w-12 h-12 text-secondary" />
-        <h3 className="text-xl font-bold text-background">Message sent!</h3>
-        <p className="text-background/60">Thank you for reaching out. I'll be in touch within 24 hours.</p>
+        <h3 className="text-xl font-bold text-foreground">Message sent!</h3>
+        <p className="text-muted-foreground">Thank you for reaching out. I'll be in touch within 24 hours.</p>
         <button
           onClick={() => setStatus("idle")}
           className="text-sm text-secondary underline underline-offset-2 mt-2"
@@ -234,71 +300,37 @@ function ContactForm() {
     );
   }
 
-  const inputCls = "w-full bg-background/5 border border-background/20 text-background placeholder:text-background/30 px-4 py-3 focus:outline-none focus:border-secondary transition-colors";
+  const inputCls = "w-full bg-muted/30 border border-border text-foreground placeholder:text-muted-foreground/50 px-4 py-3 focus:outline-none focus:border-secondary transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Name *</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Your name"
-            required
-            className={inputCls}
-          />
+          <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Name *</label>
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Your name" required className={inputCls} />
         </div>
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Email *</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="your@email.com"
-            required
-            className={inputCls}
-          />
+          <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Email *</label>
+          <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="your@email.com" required className={inputCls} />
         </div>
       </div>
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Company</label>
-        <input
-          name="company"
-          value={form.company}
-          onChange={handleChange}
-          placeholder="Organization name (optional)"
-          className={inputCls}
-        />
+        <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Company</label>
+        <input name="company" value={form.company} onChange={handleChange} placeholder="Organization name (optional)" className={inputCls} />
       </div>
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Message *</label>
-        <textarea
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          placeholder="Tell me about your HR transformation challenge..."
-          required
-          rows={5}
-          className={`${inputCls} resize-none`}
-        />
+        <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Message *</label>
+        <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell me about your HR transformation challenge..." required rows={5} className={`${inputCls} resize-none`} />
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-2 text-sm text-red-400 bg-red-400/10 border border-red-400/20 px-4 py-3">
+        <div className="flex items-center gap-2 text-sm text-red-500 bg-red-500/10 border border-red-500/20 px-4 py-3">
           <AlertCircle className="w-4 h-4 shrink-0" />
           {errorMsg}
         </div>
       )}
 
-      <Button
-        type="submit"
-        disabled={status === "loading"}
-        size="lg"
-        className="w-full rounded-none h-14 font-semibold text-base disabled:opacity-60"
-      >
+      <Button type="submit" disabled={status === "loading"} size="lg" className="w-full rounded-none h-14 font-semibold text-base disabled:opacity-60">
         {status === "loading" ? (
           <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
         ) : (
@@ -306,7 +338,7 @@ function ContactForm() {
         )}
       </Button>
 
-      <p className="text-xs text-background/30 text-center">Your information is kept strictly private.</p>
+      <p className="text-xs text-muted-foreground/50 text-center">Your information is kept strictly private.</p>
     </form>
   );
 }
