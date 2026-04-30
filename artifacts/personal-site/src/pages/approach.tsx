@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import servicesAbstract from "@/assets/services-abstract.png";
+import servicesAbstract from "@/assets/approach-digital.png";
 
 const steps = [
   {
@@ -76,13 +76,13 @@ export default function ApproachPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="relative aspect-square md:aspect-[4/5] border border-background/20 p-2"
+              className="relative aspect-[3/2] border border-background/20 p-2"
             >
-              <div className="w-full h-full overflow-hidden bg-background/5">
+              <div className="w-full h-full overflow-hidden">
                 <img
                   src={servicesAbstract}
-                  alt="Data architecture visualization"
-                  className="w-full h-full object-cover opacity-90 mix-blend-luminosity"
+                  alt="Digital Transformation"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </motion.div>
