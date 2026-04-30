@@ -3,7 +3,7 @@ import { BrainCircuit, Network, Activity, ArrowRight, ChevronDown, ChevronUp } f
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "wouter";
-import robotImg from "@/assets/robot.png";
+import robotImg from "@/assets/robot-nobg.png";
 
 const ExpertiseCard = ({ icon, title, desc, bullets, delay }: { icon: React.ReactNode; title: string; desc: string; bullets: string[]; delay: number }) => {
   const [isExpanded, setIsExpanded] = useState(false);
