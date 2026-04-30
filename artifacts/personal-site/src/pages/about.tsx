@@ -42,7 +42,7 @@ export default function AboutPage() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Advisor</span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Digital Transformation Leader</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-4">Abdul Haseeb Shaik</h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
