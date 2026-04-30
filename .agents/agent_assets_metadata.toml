@@ -90,6 +90,12 @@ uri = "file://artifacts/personal-site/src/assets/hero-option-9.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "uy3htEAn-VSmNdM6PYHZa"
+uri = "file://artifacts/personal-site/src/assets/robot-folded.png"
+type = "image"
+title = "robot folded arms"
+
 [[outputs]]
 id = "gPJBT25bfxk_8JWyJeKX9"
 uri = "file://artifacts/personal-site/src/assets/hero-option-1.png"
