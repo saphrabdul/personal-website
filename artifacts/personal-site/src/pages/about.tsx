@@ -3,7 +3,7 @@ import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucid
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import aboutOffice from "@/assets/about-office.png";
-import abdulProfile from "@/assets/abdul-profile-final.png";
+import abdulProfile from "@/assets/abdul-profile.png";
 
 const timeline = [
   { year: "2004–2010", role: "IT Systems Architect", detail: "Enterprise ERP and HR systems implementation across manufacturing and financial services clients in the Middle East and South Asia." },
@@ -25,11 +25,13 @@ export default function AboutPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="md:col-span-4 flex justify-center md:justify-start"
             >
-              <img
-                src={abdulProfile}
-                alt="Abdul Haseeb Shaik"
-                className="w-48 md:w-56 object-contain drop-shadow-xl"
-              />
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl">
+                <img
+                  src={abdulProfile}
+                  alt="Abdul Haseeb Shaik"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
             </motion.div>
 
             <motion.div
