@@ -60,7 +60,7 @@ export default function ApproachPage() {
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Approach</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground max-w-3xl mb-6">
-                Technology is the easy part. Adoption is where transformation happens.
+                A structured path from HR strategy to real adoption.
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl">
                 Many organizations buy sophisticated HR software only to use 20% of its capabilities. The methodology here bridges IT and HR to make intelligent tools actually serve the people using them.
