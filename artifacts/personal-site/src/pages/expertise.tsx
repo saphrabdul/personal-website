@@ -72,20 +72,11 @@ export default function ExpertisePage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="md:col-span-4 hidden md:flex items-center justify-center"
             >
-              <div
-                style={{
-                  maskImage: "linear-gradient(to right, black 55%, transparent 95%), linear-gradient(to bottom, black 60%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to right, black 55%, transparent 95%), linear-gradient(to bottom, black 60%, transparent 100%)",
-                  maskComposite: "intersect",
-                  WebkitMaskComposite: "source-in",
-                }}
-              >
-                <img
-                  src={robotImg}
-                  alt="AI & HR Technology"
-                  className="w-full max-w-[320px] object-contain"
-                />
-              </div>
+              <img
+                src={robotImg}
+                alt="AI & HR Technology"
+                className="max-h-[360px] w-auto object-contain drop-shadow-2xl"
+              />
             </motion.div>
           </div>
         </div>
