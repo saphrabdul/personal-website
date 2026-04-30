@@ -85,8 +85,8 @@ export default function Home() {
       <section className="relative flex items-start pt-20 pb-12 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
 
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER} className="lg:col-span-5">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
@@ -115,7 +115,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 40, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="hidden lg:flex items-center justify-center relative lg:col-span-7"
+              className="hidden lg:flex items-center justify-center relative"
             >
               <img
                 src={heroTech}
