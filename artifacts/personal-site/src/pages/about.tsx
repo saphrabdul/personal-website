@@ -18,12 +18,12 @@ export default function AboutPage() {
       {/* PAGE HERO */}
       <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-12 gap-12 items-center">
+          <div className="grid md:grid-cols-12 gap-8 items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="md:col-span-4 flex justify-center md:justify-start"
+              className="md:col-span-3 flex justify-center md:justify-start"
             >
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl">
                 <img
@@ -38,7 +38,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="md:col-span-8"
+              className="md:col-span-9"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
