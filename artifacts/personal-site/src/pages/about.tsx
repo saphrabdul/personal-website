@@ -20,6 +20,21 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-12 gap-12 items-center">
             <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="md:col-span-4 flex justify-center md:justify-start"
+            >
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden ring-4 ring-white shadow-2xl">
+                <img
+                  src={abdulProfile}
+                  alt="Abdul Haseeb Shaik"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
@@ -33,21 +48,6 @@ export default function AboutPage() {
               <p className="text-lg text-muted-foreground max-w-2xl">
                 Digital Transformation & HR Technology Advisor with 20+ years of experience and 50+ global projects delivered.
               </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="md:col-span-4 flex justify-center md:justify-end"
-            >
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden ring-4 ring-white shadow-2xl">
-                <img
-                  src={abdulProfile}
-                  alt="Abdul Haseeb Shaik"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
             </motion.div>
           </div>
         </div>
