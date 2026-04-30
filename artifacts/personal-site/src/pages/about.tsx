@@ -3,6 +3,7 @@ import { LineChart, ArrowRight, CheckCircle2, AlertCircle, Loader2 } from "lucid
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import aboutOffice from "@/assets/about-office.png";
+import abdulProfile from "@/assets/abdul-profile.png";
 
 const timeline = [
   { year: "2004–2010", role: "IT Systems Architect", detail: "Enterprise ERP and HR systems implementation across manufacturing and financial services clients in the Middle East and South Asia." },
@@ -17,16 +18,38 @@ export default function AboutPage() {
       {/* PAGE HERO */}
       <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Advisor</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-4">Abdul Haseeb Shaik</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Digital Transformation & HR Technology Advisor with 20+ years of experience and 50+ global projects delivered.
-            </p>
-          </motion.div>
+          <div className="grid md:grid-cols-12 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="md:col-span-8"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-secondary" />
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">The Advisor</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-4">Abdul Haseeb Shaik</h1>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Digital Transformation & HR Technology Advisor with 20+ years of experience and 50+ global projects delivered.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="md:col-span-4 flex justify-center md:justify-end"
+            >
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-secondary/30 shadow-xl">
+                <img
+                  src={abdulProfile}
+                  alt="Abdul Haseeb Shaik"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
