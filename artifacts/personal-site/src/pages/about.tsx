@@ -25,7 +25,7 @@ export default function AboutPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="md:col-span-4 flex justify-center md:justify-start"
             >
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden ring-4 ring-white shadow-2xl">
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl">
                 <img
                   src={abdulProfile}
                   alt="Abdul Haseeb Shaik"
