@@ -70,12 +70,12 @@ export default function ExpertisePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-4 hidden md:flex items-center justify-center"
+              className="md:col-span-4 hidden md:flex items-center justify-center -mt-12"
             >
               <img
                 src={robotImg}
                 alt="AI & HR Technology"
-                className="w-full max-w-[220px] object-contain drop-shadow-2xl"
+                className="w-full max-w-[190px] object-contain drop-shadow-2xl"
               />
             </motion.div>
           </div>
