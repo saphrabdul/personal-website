@@ -72,7 +72,6 @@ export default function AboutPage() {
               <div className="font-mono text-sm uppercase tracking-wider text-foreground font-bold space-y-2">
                 <p>— 20+ Years in HR Technology & IT</p>
                 <p>— 50+ Projects Delivered Globally</p>
-                <p>— Hire to Retire Specialist</p>
               </div>
             </div>
 
