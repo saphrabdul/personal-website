@@ -3,7 +3,7 @@ import { BrainCircuit, Network, Activity, ArrowRight, ChevronDown, ChevronUp } f
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "wouter";
-import robotImg from "@/assets/robot-computer.png";
+import robotImg from "@/assets/robot-hr.png";
 
 const ExpertiseCard = ({ icon, title, desc, bullets, delay }: { icon: React.ReactNode; title: string; desc: string; bullets: string[]; delay: number }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,7 +53,7 @@ export default function ExpertisePage() {
       <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-12 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="md:col-span-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="md:col-span-7">
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
                 <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Core Expertise</span>
@@ -70,12 +70,12 @@ export default function ExpertisePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-4 hidden md:flex items-center justify-center"
+              className="md:col-span-5 hidden md:flex items-center justify-center"
             >
               <img
                 src={robotImg}
                 alt="AI & HR Technology"
-                className="max-h-[360px] w-auto object-contain drop-shadow-2xl"
+                className="w-full max-w-[420px] object-contain drop-shadow-xl"
               />
             </motion.div>
           </div>
