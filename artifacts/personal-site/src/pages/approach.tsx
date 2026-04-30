@@ -83,42 +83,6 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* 4-STEP METHODOLOGY */}
-      <section className="py-24 bg-background border-b border-border">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-16"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-8 bg-secondary" />
-              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Methodology</span>
-            </div>
-            <h2 className="text-4xl font-bold tracking-tight text-foreground">Four phases. No shortcuts.</h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.7 }}
-                className="border border-border p-8 bg-muted/20 hover:border-secondary/30 transition-colors"
-              >
-                <span className="font-mono text-4xl font-bold text-secondary/20 mb-4 block">{s.number}</span>
-                <h3 className="text-xl font-bold text-foreground mb-3">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* IMAGE + OVERVIEW */}
       <section className="py-24 bg-foreground text-background border-b border-background/10">
         <div className="container mx-auto px-6 md:px-12">
@@ -156,6 +120,42 @@ export default function ApproachPage() {
                 ))}
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4-STEP METHODOLOGY */}
+      <section className="py-24 bg-background border-b border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="mb-16"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-8 bg-secondary" />
+              <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Methodology</span>
+            </div>
+            <h2 className="text-4xl font-bold tracking-tight text-foreground">Four phases. No shortcuts.</h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.7 }}
+                className="border border-border p-8 bg-muted/20 hover:border-secondary/30 transition-colors"
+              >
+                <span className="font-mono text-4xl font-bold text-secondary/20 mb-4 block">{s.number}</span>
+                <h3 className="text-xl font-bold text-foreground mb-3">{s.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
