@@ -52,7 +52,7 @@ export default function ExpertisePage() {
       {/* PAGE HERO */}
       <section className="pt-40 pb-20 bg-background border-b border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-12 gap-12 items-start">
+          <div className="grid md:grid-cols-12 gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="md:col-span-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
@@ -75,7 +75,7 @@ export default function ExpertisePage() {
               <img
                 src={robotImg}
                 alt="AI & HR Technology"
-                className="w-full max-w-[260px] object-contain drop-shadow-2xl"
+                className="w-full max-w-[220px] object-contain drop-shadow-2xl"
               />
             </motion.div>
           </div>
