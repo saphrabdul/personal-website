@@ -139,7 +139,7 @@ export default function AboutPage() {
       </section>
 
       {/* CONTACT FORM */}
-      <section id="contact" className="py-24 md:py-32 bg-foreground text-background">
+      <section id="contact" className="py-24 md:py-32 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             {/* Left — headline */}
@@ -151,15 +151,15 @@ export default function AboutPage() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-secondary" />
-                <span className="font-mono text-sm font-bold uppercase tracking-widest text-secondary">Get in Touch</span>
+                <span className="font-mono text-sm font-bold uppercase tracking-widest text-muted-foreground">Get in Touch</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
                 Ready to modernize your HR infrastructure?
               </h2>
-              <p className="text-background/60 text-lg leading-relaxed mb-8">
+              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
                 Whether you need to fix one stage or redesign the entire employee journey — send a message and I'll get back to you personally.
               </p>
-              <ul className="space-y-3 text-background/70 text-sm">
+              <ul className="space-y-3 text-muted-foreground text-sm">
                 {[
                   "No obligation discovery call",
                   "Response within 24 hours",
@@ -222,8 +222,8 @@ function ContactForm() {
     return (
       <div className="border border-secondary/30 bg-secondary/10 p-10 flex flex-col items-center text-center gap-4">
         <CheckCircle2 className="w-12 h-12 text-secondary" />
-        <h3 className="text-xl font-bold text-background">Message sent!</h3>
-        <p className="text-background/60">Thank you for reaching out. I'll be in touch within 24 hours.</p>
+        <h3 className="text-xl font-bold text-foreground">Message sent!</h3>
+        <p className="text-muted-foreground">Thank you for reaching out. I'll be in touch within 24 hours.</p>
         <button
           onClick={() => setStatus("idle")}
           className="text-sm text-secondary underline underline-offset-2 mt-2"
@@ -234,13 +234,13 @@ function ContactForm() {
     );
   }
 
-  const inputCls = "w-full bg-background/5 border border-background/20 text-background placeholder:text-background/30 px-4 py-3 focus:outline-none focus:border-secondary transition-colors";
+  const inputCls = "w-full bg-muted/30 border border-border text-foreground placeholder:text-muted-foreground/50 px-4 py-3 focus:outline-none focus:border-secondary transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Name *</label>
+          <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Name *</label>
           <input
             name="name"
             value={form.name}
@@ -251,7 +251,7 @@ function ContactForm() {
           />
         </div>
         <div>
-          <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Email *</label>
+          <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Email *</label>
           <input
             name="email"
             type="email"
@@ -264,7 +264,7 @@ function ContactForm() {
         </div>
       </div>
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Company</label>
+        <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Company</label>
         <input
           name="company"
           value={form.company}
@@ -274,7 +274,7 @@ function ContactForm() {
         />
       </div>
       <div>
-        <label className="block text-xs font-mono uppercase tracking-wider text-background/40 mb-2">Message *</label>
+        <label className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-2">Message *</label>
         <textarea
           name="message"
           value={form.message}
@@ -306,7 +306,7 @@ function ContactForm() {
         )}
       </Button>
 
-      <p className="text-xs text-background/30 text-center">Your information is kept strictly private.</p>
+      <p className="text-xs text-muted-foreground/50 text-center">Your information is kept strictly private.</p>
     </form>
   );
 }
