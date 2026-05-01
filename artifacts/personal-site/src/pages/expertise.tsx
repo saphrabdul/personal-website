@@ -70,7 +70,7 @@ export default function ExpertisePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-5 hidden md:flex items-center justify-center"
+              className="md:col-span-5 flex items-center justify-center"
             >
               <img
                 src={robotImg}

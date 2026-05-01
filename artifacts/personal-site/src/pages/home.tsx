@@ -115,7 +115,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 40, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="hidden lg:flex items-center justify-center relative"
+              className="flex items-center justify-center relative"
             >
               <img
                 src={heroImg}
