@@ -82,17 +82,17 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative flex items-start pt-40 pb-20 overflow-hidden bg-background">
+      <section className="relative flex items-start pt-24 lg:pt-40 pb-12 lg:pb-20 overflow-hidden bg-background">
         <div className="container relative z-10 mx-auto px-6 md:px-12">
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
-              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER} className="order-2 lg:order-1">
+              <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-4 md:mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
               </motion.h1>
 
-              <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-xl md:text-2xl text-foreground/70 max-w-xl mb-12 leading-relaxed">
+              <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-lg md:text-2xl text-foreground/70 max-w-xl mb-8 md:mb-12 leading-relaxed">
                 I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
               </motion.p>
 
@@ -115,12 +115,12 @@ export default function Home() {
               initial={{ opacity: 0, x: 40, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="flex items-center justify-center relative"
+              className="flex items-center justify-center relative order-1 lg:order-2"
             >
               <img
                 src={heroImg}
                 alt="HR Technology"
-                className="w-full max-w-[480px] object-contain drop-shadow-xl"
+                className="w-full max-w-[260px] sm:max-w-[340px] lg:max-w-[480px] object-contain drop-shadow-xl"
               />
             </motion.div>
 
