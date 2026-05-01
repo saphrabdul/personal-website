@@ -86,7 +86,7 @@ export default function Home() {
         <div className="container relative z-10 mx-auto px-6 md:px-12">
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER} className="order-2 lg:order-1">
+            <motion.div initial="hidden" animate="show" variants={STAGGER_CONTAINER}>
               <motion.h1 variants={FADE_UP_ANIMATION_VARIANTS} className="text-4xl sm:text-4xl md:text-[2.65rem] font-bold tracking-tight text-foreground leading-[1.15] mb-4 md:mb-8">
                 Connecting People, Process,<br />
                 and Technology <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">with AI.</span>
@@ -95,6 +95,18 @@ export default function Home() {
               <motion.p variants={FADE_UP_ANIMATION_VARIANTS} className="text-lg md:text-2xl text-foreground/70 max-w-xl mb-8 md:mb-12 leading-relaxed">
                 I help organizations bridge the gap between IT infrastructure and human capital, deploying AI and intelligent systems to transform how companies recruit, perform, and grow.
               </motion.p>
+
+              {/* Mobile-only image — between paragraph and buttons */}
+              <motion.div
+                variants={FADE_UP_ANIMATION_VARIANTS}
+                className="flex lg:hidden items-center justify-center mb-8"
+              >
+                <img
+                  src={heroImg}
+                  alt="HR Technology"
+                  className="w-full max-w-[280px] object-contain drop-shadow-xl"
+                />
+              </motion.div>
 
               <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex flex-col sm:flex-row gap-4">
                 <Link href="/about#contact">
@@ -110,17 +122,17 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Hero Tech Image */}
+            {/* Desktop-only right column image */}
             <motion.div
               initial={{ opacity: 0, x: 40, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              className="flex items-center justify-center relative order-1 lg:order-2"
+              className="hidden lg:flex items-center justify-center relative"
             >
               <img
                 src={heroImg}
                 alt="HR Technology"
-                className="w-full max-w-[260px] sm:max-w-[340px] lg:max-w-[480px] object-contain drop-shadow-xl"
+                className="w-full max-w-[480px] object-contain drop-shadow-xl"
               />
             </motion.div>
 
